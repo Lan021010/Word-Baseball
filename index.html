@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101426">
+<title>WORD LEAGUE v28 · 편입영어 야구</title>
+<style>
+:root{--bg:#0d1020;--panel:#171c31;--panel2:#202741;--ink:#f6f7ff;--muted:#a8b0ce;--lime:#c7ff4f;--pink:#ff548a;--cyan:#62e6ff;--gold:#ffc857;--line:#343c5b;--green:#55f0b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#293760 0%,var(--bg) 55%);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Noto Sans KR",sans-serif;min-height:100vh}button,input,select{font:inherit}button{border:0;cursor:pointer;font-weight:800;transition:transform .12s,filter .12s}button:active{transform:scale(.98)}button:disabled{opacity:.5;cursor:default}
+.top{padding:19px 16px 12px;max-width:850px;margin:auto}.brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{display:flex;align-items:center;gap:10px}.logoicon{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--lime);color:#11162a;font-size:24px;box-shadow:0 0 28px #c7ff4f28}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--lime);font-weight:900}.brand{font-size:21px;font-weight:1000;letter-spacing:-.8px}.sub{font-size:12px;color:var(--muted);margin-top:2px}.pill{border:1px solid #455073;color:#dce4ff;border-radius:999px;padding:8px 10px;font-size:11px;font-weight:800}
+main{max-width:850px;margin:auto;padding:5px 13px 40px}.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:9px 0 13px}.nav button{padding:12px 5px;border-radius:12px;background:#1c2239;color:#aeb8d8;font-size:12px;border:1px solid transparent}.nav button.active{background:var(--lime);color:#12172a;box-shadow:0 5px 20px #c7ff4f1c}
+.panel{background:linear-gradient(145deg,#1a2037,#14192b);border:1px solid #2d3552;border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 14px 34px #00000020}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panel h2{font-size:17px;margin:0;font-weight:950}.muted{color:var(--muted);font-size:12px;line-height:1.55}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.stat{background:#202741;border:1px solid #303958;border-radius:15px;padding:11px 6px;text-align:center}.stat b{font-size:23px;display:block;line-height:1.1}.stat span{font-size:10px;color:var(--muted);font-weight:800}.stat.lime b{color:var(--lime)}.stat.pink b{color:var(--pink)}.stat.cyan b{color:var(--cyan)}
+.field{width:100%;background:#101528;color:var(--ink);border:1px solid #394363;border-radius:12px;padding:12px;margin:5px 0 10px;outline:none}.field:focus{border-color:var(--lime)}.btn{border-radius:13px;padding:12px 14px}.btn.primary{background:var(--lime);color:#111629}.btn.secondary{background:#2a3351;color:#f5f7ff;border:1px solid #424d70}.btn.danger{background:#4a2038;color:#ffb7cb}.btnrow{display:flex;gap:8px}.btnrow>*{flex:1}.tag{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:8px;background:#2a3350;color:#c6d0f5;font-size:11px;font-weight:900}.tag.pos{background:#263c49;color:var(--cyan);border:1px solid #3b6978}.tag.hot{background:#4b2b21;color:var(--gold)}.hidden{display:none!important}
+
+.count-lights-wrap{display:inline-flex;align-items:center;gap:5px;flex-shrink:0}.count-lights-label{font-size:9px;letter-spacing:.5px;color:#e0e7fa}.count-lights{display:inline-flex;gap:4px;align-items:center}.count-lights i{display:block;width:10px;height:10px;border-radius:50%;background:#263044;border:1px solid #66718b;box-shadow:inset 0 1px 2px #0008}.count-lights i.lit{background:#ff465f;border-color:#ff9aa8;box-shadow:0 0 8px #ff465f, inset 0 1px 2px #fff7}
+.stadium{border-radius:19px;overflow:hidden;margin:14px 0;background:linear-gradient(180deg,#171c31,#172d32);border:1px solid #34435b;position:relative}.stadiumtop{padding:10px 12px;display:flex;justify-content:space-between;gap:6px;background:#101628;font-size:11px;font-weight:900;color:#c6d0ee}.fieldart{height:210px;position:relative;background:radial-gradient(ellipse at 50% 120%,#3d9d62 0%,#216846 43%,#174c42 68%,#132f35 100%);overflow:hidden}.crowd{position:absolute;top:0;left:0;right:0;height:36px;background:repeating-linear-gradient(90deg,#34415e 0 5px,#202a43 5px 10px);opacity:.7}.diamond{position:absolute;width:142px;height:142px;left:calc(50% - 71px);top:49px;transform:rotate(45deg);border:3px solid #e4d4a0;background:#287e4e;box-shadow:0 0 0 7px #fff1}.base{position:absolute;width:21px;height:21px;background:#fff6d6;border:2px solid #c6a958;transform:rotate(45deg);z-index:2;border-radius:3px}.b1{left:calc(50% + 50px);top:106px}.b2{left:calc(50% - 10px);top:46px}.b3{left:calc(50% - 70px);top:106px}.home{left:calc(50% - 10px);top:166px;background:white}.base.occupied{background:var(--lime);box-shadow:0 0 15px #c7ff4f7a}.runner{position:absolute;z-index:4;font-size:24px;filter:drop-shadow(0 2px 2px #0008);transform:translate(-50%,-50%)}.batball{position:absolute;top:72px;left:calc(50% + 22px);font-size:28px;animation:float 1.7s ease-in-out infinite}@keyframes float{50%{transform:translate(5px,-9px) rotate(18deg)}}.fieldlabel{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-size:10px;color:#d5f5de;letter-spacing:1px;font-weight:900}
+.questionarea{padding:15px 0 4px;text-align:center}.qtop{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}.word{font-size:clamp(29px,7vw,43px);font-weight:1000;letter-spacing:-1.5px;line-height:1.15;margin:15px 0 8px;overflow-wrap:anywhere}.hint{color:var(--muted);font-size:12px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:17px 0 8px}.answer{position:relative;min-height:72px;text-align:left;padding:13px;border-radius:15px;background:#222a45;color:#f5f7ff;border:1px solid #35405f;font-size:14px;line-height:1.4}.answer .letter{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:#35405f;color:#d4dcf8;font-size:11px;margin-right:7px}.answer.correct{background:#163e36;border:1px solid var(--green);color:#d8fff0}.answer.correct .letter{background:var(--green);color:#09231a}.answer.wrong{background:#4a2038;border:1px solid var(--pink);color:#ffe2eb}.answer small{display:block;color:#aab8d5;margin:5px 0 0 30px;font-size:11px}.feedback{min-height:44px;text-align:center;padding:9px 2px;color:#dfe5ff;font-weight:850;font-size:13px}.feedback.good{color:var(--green)}.feedback.bad{color:#ff92b0}.feedback.home{color:var(--gold)}.notice{border:1px solid #4b4c43;background:#29291f;border-radius:12px;padding:11px;color:#e8dfba;font-size:11px;line-height:1.55}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.wordrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#202741;border:1px solid #303958;border-radius:13px;padding:11px}.wordrow b{display:block;font-size:14px}.wordrow .meaning{font-size:12px;color:#b7c0de;margin-top:4px}.wordrow button{border-radius:9px;padding:7px 9px;background:#3c2940;color:#ffc5d4;font-size:11px}.list{display:grid;gap:7px;max-height:470px;overflow:auto}.section{margin-bottom:12px}.sectionlabel{font-size:11px;color:var(--lime);font-weight:900;letter-spacing:1px;margin:2px 0 8px}.empty{text-align:center;padding:24px 10px;color:var(--muted);font-size:13px}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#f4f6ff;color:#12172a;padding:12px 17px;border-radius:13px;font-weight:900;font-size:13px;box-shadow:0 12px 30px #0008;z-index:10;max-width:90%;text-align:center}.confetti{font-size:22px;letter-spacing:5px}.footer{text-align:center;color:#697391;font-size:10px;padding:12px}
+@media(min-width:620px){main{padding-left:18px;padding-right:18px}.panel{padding:20px}.fieldart{height:235px}.diamond{top:58px}.b1{top:115px}.b2{top:55px}.b3{top:115px}.home{top:175px}.answers{gap:11px}.answer{font-size:15px;min-height:76px}}
+@media(max-width:380px){.nav button{font-size:10px}.stats{gap:5px}.stat b{font-size:20px}.answers{gap:7px}.answer{padding:10px;font-size:12px}}
+
+.play-flash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;pointer-events:none;opacity:0}
+.play-flash.show{animation:screenFlash .95s ease-out forwards}
+.play-flash .burst{position:absolute;width:min(80vw,360px);aspect-ratio:1;border-radius:50%;opacity:0}
+.play-flash .result-title{position:relative;text-align:center;font-size:clamp(40px,10vw,78px);font-weight:1000;letter-spacing:-2px;text-shadow:0 5px 0 #0006,0 0 35px currentColor;transform:scale(.3) rotate(-8deg);opacity:0}
+.play-flash .result-sub{font-size:clamp(13px,3.5vw,20px);letter-spacing:1px;color:#fff;text-shadow:0 2px 8px #000b;margin-top:4px}
+.play-flash.hit .burst{background:radial-gradient(circle,#c7ff4f55 0 10%,#c7ff4f20 42%,transparent 70%);border:5px solid #c7ff4f;box-shadow:0 0 55px #c7ff4f88;animation:burstHit .8s ease-out}
+.play-flash.homer .burst{background:radial-gradient(circle,#ffc85777 0 10%,#ff548a35 45%,transparent 70%);border:7px solid #ffc857;box-shadow:0 0 70px #ffc857aa;animation:burstHomer 1s cubic-bezier(.1,.8,.2,1)}
+.play-flash.out .burst{background:radial-gradient(circle,#ff548a55 0 10%,#ff548a1c 45%,transparent 70%);border:5px solid #ff548a;box-shadow:0 0 45px #ff548a77;animation:burstOut .7s ease-out}
+.play-flash.hit .result-title{color:#c7ff4f;animation:titleHit .65s cubic-bezier(.1,.9,.2,1) forwards}
+.play-flash.homer .result-title{color:#ffc857;animation:titleHomer .95s cubic-bezier(.1,.9,.2,1) forwards}
+.play-flash.out .result-title{color:#ff548a;animation:titleOut .65s ease-out forwards}
+.play-flash .spark{position:absolute;font-size:clamp(22px,6vw,42px);opacity:0}
+.play-flash.hit .spark{color:#c7ff4f;animation:sparkHit .75s ease-out}
+.play-flash.homer .spark{color:#ffc857;animation:sparkHomer 1s ease-out}
+.play-flash.out .spark{color:#ff548a;animation:sparkOut .65s ease-out}
+@keyframes screenFlash{0%{opacity:0;background:#fff0}12%{opacity:1;background:#c7ff4f1c}35%{opacity:1;background:#0000}100%{opacity:0;background:#0000}}
+@keyframes burstHit{0%{transform:scale(.1);opacity:0}25%{opacity:1}100%{transform:scale(1.3);opacity:0}}
+@keyframes burstHomer{0%{transform:scale(.05) rotate(-20deg);opacity:0}20%{opacity:1}75%{transform:scale(1.2) rotate(12deg);opacity:.8}100%{transform:scale(1.65) rotate(25deg);opacity:0}}
+@keyframes burstOut{0%{transform:scale(1.4);opacity:0}20%{opacity:1}100%{transform:scale(.65);opacity:0}}
+@keyframes titleHit{0%{transform:scale(.3) rotate(-8deg);opacity:0}55%{transform:scale(1.15) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes titleHomer{0%{transform:scale(.1) rotate(-18deg);opacity:0}45%{transform:scale(1.25) rotate(6deg);opacity:1}70%{transform:scale(.95) rotate(-2deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes titleOut{0%{transform:translateX(-30px) scale(1.4);opacity:0}25%{transform:translateX(10px) scale(.95);opacity:1}45%{transform:translateX(-8px) scale(1.04)}100%{transform:translateX(0) scale(1);opacity:1}}
+@keyframes sparkHit{0%{transform:translate(0,0) scale(.2);opacity:0}20%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(180deg);opacity:0}}
+@keyframes sparkHomer{0%{transform:translate(0,0) scale(.1);opacity:0}20%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.4) rotate(300deg);opacity:0}}
+@keyframes sparkOut{0%{transform:translate(0,0) scale(.2);opacity:0}20%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.8);opacity:0}}
+@media(prefers-reduced-motion:reduce){.play-flash.show,.play-flash .burst,.play-flash .result-title,.play-flash .spark{animation-duration:.01ms!important}}
+
+
+/* V6: cinematic broadcast-style baseball presentation, inspired by the user's reference */
+.stadium{border-radius:16px;background:#070b14;border:1px solid #3a4562;box-shadow:0 12px 32px #0006}
+.stadiumtop{background:linear-gradient(90deg,#090d18,#1b2338,#090d18);color:#f6f7ff;border-bottom:1px solid #35415e;padding:9px 11px;font-size:10px}
+.fieldart{height:265px;background:linear-gradient(180deg,#11182b 0%,#202b3c 30%,#39414b 43%,#172d29 44%,#276341 100%);isolation:isolate}
+.fieldart:before{content:"";position:absolute;left:-10%;right:-10%;top:34%;height:25%;background:repeating-linear-gradient(90deg,#263247 0 7px,#3b4350 7px 12px);clip-path:polygon(0 12%,100% 0,100% 100%,0 88%);opacity:.95;z-index:0}
+.fieldart:after{content:"";position:absolute;left:-20%;right:-20%;bottom:-45%;height:100%;background:radial-gradient(ellipse at 50% 0%,#448c52 0%,#1f633b 50%,#103d2e 100%);clip-path:polygon(50% 0,100% 20%,100% 100%,0 100%,0 20%);z-index:0}
+.crowd{top:24%;height:17%;z-index:1;background:repeating-linear-gradient(90deg,#d7d9d5 0 2px,#1d2839 2px 7px,#384457 7px 12px,#151e2f 12px 16px);opacity:.68}
+.fieldart .diamond{width:clamp(140px,40vw,210px);height:clamp(140px,40vw,210px);left:calc(50% - clamp(70px,20vw,105px));top:116px;transform:perspective(300px) rotateX(58deg) rotate(45deg);border:2px solid #f2dca0;background:linear-gradient(135deg,#b38d58 0 48%,#277143 49% 100%);box-shadow:0 0 0 2px #fff2;z-index:2}
+.fieldart .base{width:17px;height:17px;z-index:5;box-shadow:0 1px 3px #0008}
+.fieldart .b1{left:calc(50% + 55px);top:159px}
+.fieldart .b2{left:calc(50% - 8px);top:127px}
+.fieldart .b3{left:calc(50% - 70px);top:159px}
+.fieldart .home{left:calc(50% - 8px);top:201px}
+.fieldart .runner{font-size:21px;z-index:7;text-shadow:0 2px 2px #000}
+.fieldart .batball{z-index:8;left:calc(50% + 2px);top:132px;font-size:19px;animation:ballPulse .7s ease-in-out infinite alternate}
+.fieldart .fieldlabel{z-index:9;bottom:6px;font-size:9px;text-shadow:0 1px 3px #000;color:#e5f8e9}
+.broadcast-score{position:absolute;z-index:10;top:8px;left:8px;display:flex;gap:5px;align-items:stretch;font-size:9px;font-weight:900;filter:drop-shadow(0 2px 3px #0008)}
+.broadcast-score .scorebox{padding:5px 7px;background:#111a2bde;border:1px solid #67748b;border-radius:4px;color:#fff;min-width:45px}
+.broadcast-score .scorebox strong{display:block;font-size:13px;color:#c7ff4f}
+.broadcast-score .countbox{padding:5px 7px;background:#f0f2f5;color:#121827;border-radius:4px}
+.stadium-light{position:absolute;z-index:3;top:6px;right:14px;width:35px;height:48px;background:radial-gradient(ellipse at 50% 10%,#fff 0 3%,#e7f5ff88 4% 13%,transparent 60%);filter:drop-shadow(0 0 8px #e6f5ff99)}
+.stadium-light:before{content:"";position:absolute;top:5px;left:12px;width:2px;height:60px;background:#9da8b9;transform:rotate(-7deg);transform-origin:top}
+.foul-line{position:absolute;z-index:3;bottom:3px;width:2px;height:72%;background:linear-gradient(transparent,#fffbd9);transform-origin:bottom;opacity:.8}
+.foul-line.left{left:38%;transform:rotate(35deg)}
+.foul-line.right{right:38%;transform:rotate(-35deg)}
+.mound{position:absolute;z-index:4;left:calc(50% - 18px);top:144px;width:36px;height:13px;border-radius:50%;background:#c6a77a;border:1px solid #ebd4a3;box-shadow:0 1px 3px #0008}
+.pitcher{position:absolute;z-index:6;left:calc(50% - 5px);top:128px;font-size:22px;filter:drop-shadow(0 2px 2px #0008)}
+.batter-art{position:absolute;z-index:6;left:3%;bottom:6px;width:clamp(95px,28vw,155px);height:190px;overflow:visible;filter:drop-shadow(0 5px 3px #0008)}
+.batter-art .bat{transform-origin:75px 42px;animation:batIdle 2.4s ease-in-out infinite}
+@keyframes batIdle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(2deg)}}
+@keyframes ballPulse{from{transform:translateY(0) scale(.9)}to{transform:translateY(-3px) scale(1.1)}}
+@media(min-width:620px){.fieldart{height:300px}.fieldart .diamond{top:130px}.fieldart .b1{top:178px}.fieldart .b2{top:142px}.fieldart .b3{top:178px}.fieldart .home{top:228px}.fieldart .mound{top:163px}.fieldart .pitcher{top:146px}.batter-art{height:215px;width:165px;left:6%}}
+
+
+/* V7: place the hitter at home plate and make the game-over state unmistakable */
+.fieldart .batter-art{left:calc(50% - 150px);bottom:-9px;width:145px;height:190px;z-index:8;transform:scale(.94);transform-origin:bottom center}
+.fieldart .bat{animation:batReady 1.7s ease-in-out infinite}
+@keyframes batReady{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+.batter-box{position:absolute;z-index:3;left:calc(50% - 67px);bottom:11px;width:40px;height:27px;border:2px solid #fff8;border-radius:3px;transform:skewY(-22deg);box-shadow:0 0 8px #fff2}
+.batter-box.right{left:calc(50% + 27px);transform:skewY(22deg)}
+.fieldart .home{z-index:6}
+.fieldart .batball{z-index:9}
+.gameover-screen{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:20px;background:#050711eF;backdrop-filter:blur(7px)}
+.gameover-screen.hidden{display:none!important}
+.gameover-card{width:min(100%,430px);text-align:center;padding:27px 22px 22px;border-radius:24px;border:2px solid #ff548a;background:radial-gradient(ellipse at top,#47213c,#171a2d 67%);box-shadow:0 0 0 5px #ff548a20,0 20px 80px #000b;animation:gameOverEnter .55s cubic-bezier(.2,.9,.25,1)}
+.gameover-kicker{font-size:11px;letter-spacing:4px;font-weight:1000;color:#ff8eaf}
+.gameover-title{font-size:clamp(44px,12vw,66px);line-height:1;font-weight:1000;letter-spacing:-2px;color:#fff;text-shadow:0 4px 0 #a51e4e,0 0 32px #ff548a88;margin:12px 0}
+.gameover-sub{color:#d9dff6;font-size:13px;line-height:1.6}
+.gameover-score{font-size:36px;font-weight:1000;color:#c7ff4f;margin:12px 0 3px}
+.gameover-stats{display:flex;justify-content:center;gap:18px;color:#c4cce5;font-size:12px;margin:12px 0 18px}
+.gameover-card .btnrow{margin-top:12px}
+@keyframes gameOverEnter{0%{opacity:0;transform:scale(.75) translateY(20px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@media(min-width:620px){.fieldart .batter-art{left:calc(50% - 174px);width:165px;height:215px}.batter-box{bottom:13px}}
+
+
+/* V8 field geometry: bases at the outer corners, no pitcher or ball */
+.fieldart{height:285px;overflow:hidden;isolation:isolate}
+.fieldart .diamond{
+  width:clamp(260px,78vw,540px);height:clamp(260px,78vw,540px);
+  left:calc(50% - clamp(130px,39vw,270px));
+  top:clamp(100px,28vw,165px);
+  transform:perspective(500px) rotateX(57deg) rotate(45deg);
+  transform-origin:center center;
+  border:2px solid #f3dfac;
+  background:linear-gradient(135deg,#b9915b 0 49%,#287547 49% 100%);
+  box-shadow:0 0 0 2px #fff2;
+  z-index:2;
+}
+/* Three bases spread to the far corners of the visible infield. */
+.fieldart .b1{left:calc(50% + clamp(100px,31vw,235px));top:56%;} /* first */
+.fieldart .b2{left:calc(50% - 9px);top:32%;} /* second, deep center */
+.fieldart .b3{left:calc(50% - clamp(100px,31vw,235px));top:56%;} /* third */
+.fieldart .base{width:clamp(18px,2.5vw,25px);height:clamp(18px,2.5vw,25px);z-index:7}
+.fieldart .base.home{
+  left:calc(50% - 18px);top:auto;bottom:8px;
+  width:36px;height:31px;transform:none;z-index:10;
+  background:#fff6df;border:2px solid #c7a65b;border-radius:2px;
+  clip-path:polygon(0 0,100% 0,100% 66%,50% 100%,0 66%);
+  box-shadow:0 0 10px #fff8;
+}
+/* Batter stands in the left-hand batter's box beside home plate. */
+.fieldart .batter-art{
+  left:calc(50% - 174px);bottom:-10px;width:clamp(118px,23vw,166px);
+  height:clamp(165px,30vw,218px);z-index:11;transform:scale(.94);
+  transform-origin:bottom center;
+}
+.fieldart .batter-box{
+  left:calc(50% - 89px);bottom:10px;width:48px;height:33px;
+  border:2px solid #fff9;transform:skewY(-13deg);z-index:5;
+}
+.fieldart .batter-box.right{
+  left:calc(50% + 43px);bottom:10px;width:48px;height:33px;
+  transform:skewY(13deg);z-index:5;
+}
+.fieldart .foul-line{height:72%;bottom:0;z-index:3;opacity:.85}
+.fieldart .foul-line.left{left:50%;transform:rotate(35deg);transform-origin:bottom}
+.fieldart .foul-line.right{right:50%;transform:rotate(-35deg);transform-origin:bottom}
+.fieldart .fieldlabel{z-index:12;bottom:5px}
+@media(min-width:620px){
+ .fieldart{height:310px}
+ .fieldart .diamond{top:155px;width:540px;height:540px;left:calc(50% - 270px)}
+ .fieldart .b1{top:58%;left:calc(50% + 235px)}
+ .fieldart .b2{top:32%}
+ .fieldart .b3{top:58%;left:calc(50% - 235px)}
+ .fieldart .base.home{bottom:8px}
+ .fieldart .batter-art{left:calc(50% - 205px);width:170px;height:225px}
+ .fieldart .batter-box{bottom:12px}
+ .fieldart .batter-box.right{bottom:12px}
+}
+@media(max-width:420px){
+ .fieldart .b1{left:calc(50% + 30vw)}
+ .fieldart .b3{left:calc(50% - 30vw)}
+ .fieldart .batter-art{left:calc(50% - 145px);width:118px;height:170px}
+ .fieldart .base.home{width:30px;height:26px;left:calc(50% - 15px)}
+}
+
+
+/* V9: put the three bases exactly at the user's marked outfield-edge positions */
+.fieldart .b1{
+  left:calc(100% - 42px)!important; top:48%!important;
+  width:34px!important;height:26px!important;
+  transform:perspective(80px) rotate(45deg) skew(-7deg,-7deg)!important;
+  border-radius:3px!important;
+  background:linear-gradient(135deg,#fff8dc 0%,#f3d889 70%,#c89e46 100%)!important;
+  border:2px solid #fff0b5!important;
+  box-shadow:0 3px 0 #89652e,0 0 13px #ffe7a055!important;
+  z-index:8!important;
+}
+.fieldart .b2{
+  left:calc(50% - 14px)!important; top:14%!important;
+  width:28px!important;height:22px!important;
+  transform:perspective(80px) rotate(45deg) skew(-10deg,-10deg)!important;
+  border-radius:3px!important;
+  background:linear-gradient(135deg,#fffbe7 0%,#f5dc91 72%,#c89e46 100%)!important;
+  border:2px solid #fff0b5!important;
+  box-shadow:0 3px 0 #89652e,0 0 13px #ffe7a055!important;
+  z-index:8!important;
+}
+.fieldart .b3{
+  left:8px!important; top:48%!important;
+  width:34px!important;height:26px!important;
+  transform:perspective(80px) rotate(45deg) skew(-7deg,-7deg)!important;
+  border-radius:3px!important;
+  background:linear-gradient(135deg,#fff8dc 0%,#f3d889 70%,#c89e46 100%)!important;
+  border:2px solid #fff0b5!important;
+  box-shadow:0 3px 0 #89652e,0 0 13px #ffe7a055!important;
+  z-index:8!important;
+}
+/* Home plate sits in the foreground and is drawn with depth rather than a flat square. */
+.fieldart .base.home{
+  left:calc(50% - 23px)!important;bottom:-2px!important;top:auto!important;
+  width:46px!important;height:35px!important;
+  transform:perspective(90px) rotateX(24deg)!important;
+  clip-path:polygon(0 0,100% 0,100% 65%,50% 100%,0 65%)!important;
+  background:linear-gradient(180deg,#fffdf2,#e7d7ad)!important;
+  border:2px solid #fff2c4!important;
+  box-shadow:0 0 14px #fff7!important;
+  z-index:12!important;
+}
+@media(max-width:520px){
+ .fieldart .b1{left:calc(100% - 37px)!important;width:29px!important;height:23px!important}
+ .fieldart .b3{left:8px!important;width:29px!important;height:23px!important}
+ .fieldart .b2{top:14%!important}
+ .fieldart .base.home{width:40px!important;height:31px!important;left:calc(50% - 20px)!important}
+}
+
+
+/* V10 stadium redesign: remove field plates; show runner state in a compact broadcast diamond */
+.fieldart{
+  height:330px!important;overflow:hidden!important;isolation:isolate;
+  border:1px solid #526078!important;border-radius:18px!important;
+  background:
+    linear-gradient(180deg,#111827 0%,#172238 24%,#263449 25%,#303b4b 38%,#23633e 39%,#1d6a3e 100%)!important;
+  box-shadow:inset 0 -30px 70px #071b13aa,0 14px 30px #0005!important;
+}
+/* distant stands and crowd tiers */
+.fieldart .crowd{
+  top:62px!important;height:75px!important;z-index:1!important;opacity:1!important;
+  background:
+    radial-gradient(circle at 4px 7px,#e7d6b0 0 1px,transparent 1.8px),
+    radial-gradient(circle at 11px 12px,#a7c4d8 0 1px,transparent 1.8px),
+    radial-gradient(circle at 17px 5px,#f3f5f9 0 1px,transparent 1.8px),
+    repeating-linear-gradient(90deg,#243149 0 7px,#47566a 7px 10px,#1a2539 10px 15px);
+  background-size:19px 17px,23px 19px,29px 21px,100% 100%;
+  border-top:2px solid #8d9aab55;border-bottom:7px solid #101827;
+  box-shadow:0 6px 12px #0005;
+}
+.fieldart:before{
+  content:"";position:absolute;left:0;right:0;top:36px;height:28px;z-index:1;
+  background:linear-gradient(#0d1422,#202d43);
+  border-top:1px solid #52627b;border-bottom:2px solid #536177;
+}
+.fieldart:after{
+  content:"";position:absolute;left:-12%;right:-12%;top:128px;bottom:-80px;z-index:0;
+  background:
+    repeating-linear-gradient(105deg,#2b8a50 0 38px,#247847 38px 76px),
+    linear-gradient(#267a47,#145332);
+  clip-path:polygon(50% 0,100% 13%,100% 100%,0 100%,0 13%);
+  box-shadow:inset 0 20px 30px #0002;
+}
+/* A large dirt infield diamond; no individual plates are drawn on the field. */
+.fieldart .diamond{
+  z-index:2!important;
+  width:clamp(310px,70vw,610px)!important;height:clamp(310px,70vw,610px)!important;
+  left:calc(50% - clamp(155px,35vw,305px))!important;top:176px!important;
+  transform:perspective(550px) rotateX(61deg) rotate(45deg)!important;
+  transform-origin:50% 0!important;
+  border:3px solid #e4c98d!important;
+  background:
+    linear-gradient(135deg,#b38a54 0 49.5%,#277447 50% 100%)!important;
+  box-shadow:0 0 0 2px #fff3,0 0 0 8px #fff1!important;
+  opacity:.98;
+}
+.fieldart .foul-line{
+  z-index:3!important;bottom:0!important;height:66%!important;width:2px!important;
+  background:linear-gradient(transparent,#f7e9c7cc)!important;opacity:.85!important;
+}
+.fieldart .foul-line.left{left:50%!important;transform:rotate(34deg)!important;transform-origin:bottom!important}
+.fieldart .foul-line.right{right:50%!important;transform:rotate(-34deg)!important;transform-origin:bottom!important}
+.fieldart .batter-box{z-index:4!important;bottom:11px!important;border-color:#e5e8e7a8!important;background:#fff1!important}
+.fieldart .batter-box.right{z-index:4!important;bottom:11px!important}
+.fieldart .base,.fieldart .home,.fieldart .runner{display:none!important}
+/* Broadcast scoreboard: miniature diamond is the only place bases appear. */
+.broadcast-score{
+  position:absolute!important;top:10px!important;left:10px!important;z-index:20!important;
+  display:flex!important;align-items:center!important;gap:8px!important;
+  padding:7px 9px!important;border-radius:7px!important;
+  background:linear-gradient(180deg,#101827f5,#070d18f5)!important;
+  border:1px solid #718096!important;box-shadow:0 3px 12px #0008!important;
+  color:#fff!important;
+}
+.mini-diamond{position:relative!important;width:43px!important;height:36px!important;flex:none!important}
+.mini-diamond:before{
+  content:"";position:absolute;width:20px;height:20px;left:11px;top:8px;
+  transform:rotate(45deg);background:#202b3d;border:1px solid #718096;
+}
+.mini-base{
+  position:absolute!important;width:8px!important;height:8px!important;
+  background:#f5d65d!important;border:1px solid #fff1ad!important;
+  transform:rotate(45deg)!important;border-radius:1px!important;z-index:2!important;
+  box-shadow:0 1px 3px #0008!important;
+}
+.mini-base.second{left:17px!important;top:2px!important}
+.mini-base.third{left:3px!important;top:15px!important}
+.mini-base.first{right:3px!important;top:15px!important}
+.mini-base.occupied{background:#c7ff4f!important;box-shadow:0 0 9px #c7ff4f!important}
+.mini-home{position:absolute;left:18px;bottom:1px;width:7px;height:7px;background:#f4f4f2;clip-path:polygon(0 0,100% 0,100% 65%,50% 100%,0 65%)}
+.score-info{display:flex!important;gap:8px!important;align-items:stretch!important}
+.scoreline{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:76px}
+.team-label{font-size:9px;font-weight:1000;letter-spacing:.3px;color:#dce5f3}
+.scoreline strong{font-size:15px;font-weight:1000;color:#c7ff4f;line-height:1}
+.countline{display:flex;flex-direction:column;justify-content:center;gap:3px;padding-left:8px;border-left:1px solid #5d6a7c;font-size:10px;font-weight:900;white-space:nowrap;color:#e7edf6}
+.fieldart .stadium-light{top:10px!important;right:22px!important;z-index:3!important}
+.fieldart .fieldlabel{z-index:15!important;bottom:5px!important;color:#e7f5e9!important;text-shadow:0 2px 4px #000!important}
+/* Batter: refined wood bat and cleaner batting stance. */
+.fieldart .batter-art{
+  z-index:12!important;left:calc(50% - 205px)!important;bottom:-8px!important;
+  width:clamp(130px,22vw,175px)!important;height:clamp(185px,31vw,235px)!important;
+  filter:drop-shadow(0 7px 5px #0009)!important;
+}
+.fieldart .bat{transform-origin:99px 65px!important;animation:batReadyV10 2s ease-in-out infinite!important}
+@keyframes batReadyV10{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(1.5deg)}}
+@media(max-width:520px){
+ .fieldart{height:290px!important}
+ .fieldart .crowd{top:58px!important;height:64px!important}
+ .fieldart:after{top:118px!important}
+ .fieldart .diamond{top:160px!important}
+ .fieldart .batter-art{left:calc(50% - 170px)!important;width:135px!important;height:190px!important}
+ .broadcast-score{top:8px!important;left:8px!important;padding:6px 7px!important;gap:5px!important}
+ .mini-diamond{width:35px!important;transform:scale(.9);transform-origin:center}
+ .scoreline{min-width:66px}
+}
+
+
+/* V11 — broadcast-camera baseball composition based on the user's reference */
+.fieldart{
+  position:relative!important;height:clamp(320px,52vw,445px)!important;
+  overflow:hidden!important;isolation:isolate!important;border-radius:16px!important;
+  border:1px solid #536078!important;
+  background:linear-gradient(180deg,#78b8ed 0%,#9cccf0 24%,#bacddd 34%,#34465a 35%,#1b2a3d 49%,#26723e 50%,#367d42 100%)!important;
+  box-shadow:inset 0 -25px 50px #10281b66,0 14px 35px #0005!important;
+}
+/* Distant stadium bowl and crowd */
+.fieldart .crowd{
+  position:absolute!important;left:0!important;right:0!important;top:31%!important;height:18%!important;z-index:1!important;
+  opacity:1!important;border-top:3px solid #a5b5c1;border-bottom:8px solid #1b2b3c;
+  background:
+    radial-gradient(circle at 4px 5px,#f5e7c8 0 1px,transparent 1.5px),
+    radial-gradient(circle at 10px 10px,#b9d5e8 0 1px,transparent 1.5px),
+    radial-gradient(circle at 16px 6px,#e8eef5 0 1px,transparent 1.5px),
+    repeating-linear-gradient(90deg,#5b6d7d 0 4px,#25384c 4px 8px,#82919c 8px 10px,#34485b 10px 15px);
+  background-size:19px 15px,23px 17px,29px 18px,100% 100%;
+  box-shadow:0 5px 10px #0005;
+}
+.fieldart:before{
+  content:"";position:absolute;z-index:1;left:0;right:0;top:24%;height:8%;
+  background:linear-gradient(180deg,#293a4b,#6e7f8b 40%,#34475b 45%,#17283b);
+  border-top:2px solid #d2dce5;border-bottom:2px solid #182638;
+}
+.fieldart:after{
+  content:"";position:absolute;z-index:0;left:-8%;right:-8%;top:43%;bottom:0;
+  background:
+    repeating-linear-gradient(176deg,transparent 0 28px,#ffffff08 28px 30px),
+    repeating-linear-gradient(90deg,#2f8246 0 58px,#378b4a 58px 116px,#28763f 116px 174px);
+  clip-path:polygon(50% 0,100% 16%,100% 100%,0 100%,0 16%);
+  box-shadow:inset 0 16px 24px #0c3a1d66;
+}
+/* Outfield grass perspective and the broad clay infield in the foreground */
+.fieldart .diamond{
+  position:absolute!important;z-index:2!important;
+  left:50%!important;top:49%!important;
+  width:clamp(340px,82vw,900px)!important;height:clamp(340px,82vw,900px)!important;
+  transform:translateX(-50%) perspective(620px) rotateX(63deg) rotate(45deg)!important;
+  transform-origin:50% 0!important;
+  border:0!important;border-radius:0!important;
+  background:
+    linear-gradient(135deg,#bc8a61 0%,#c99a70 48%,#b98459 100%)!important;
+  box-shadow:none!important;opacity:1!important;
+}
+/* Clay foreground overlays the bottom of the infield like a TV batter's-eye camera */
+.fieldart .batter-box{
+  position:absolute!important;z-index:5!important;bottom:7%!important;
+  width:clamp(54px,10vw,90px)!important;height:clamp(42px,8vw,68px)!important;
+  border:4px solid #f7f5ed!important;border-bottom:0!important;
+  border-radius:2px!important;background:transparent!important;
+  transform:perspective(100px) rotateY(-8deg)!important;
+  box-shadow:0 0 1px #fff!important;
+}
+.fieldart .batter-box:not(.right){left:calc(50% - clamp(105px,18vw,180px))!important}
+.fieldart .batter-box.right{
+  left:calc(50% + clamp(35px,8vw,95px))!important;
+  transform:perspective(100px) rotateY(8deg)!important;
+}
+/* Foul lines run from home toward the far corners of the diamond */
+.fieldart .foul-line{
+  z-index:4!important;position:absolute!important;bottom:-1%!important;top:auto!important;
+  height:72%!important;width:4px!important;
+  background:linear-gradient(180deg,#fff9e8,#fffdf4)!important;opacity:.96!important;
+  box-shadow:0 0 2px #fff8!important;transform-origin:bottom center!important;
+}
+.fieldart .foul-line.left{left:50%!important;transform:rotate(34deg)!important}
+.fieldart .foul-line.right{right:50%!important;transform:rotate(-34deg)!important}
+/* Remove all on-field plates, runners, home plate, and the fake floodlight mast. */
+.fieldart .base,.fieldart .home,.fieldart .runner,.fieldart .stadium-light{display:none!important}
+/* Small broadcast scoreboard with base occupancy in the upper-left corner */
+.broadcast-score{
+  position:absolute!important;left:12px!important;top:12px!important;z-index:30!important;
+  display:flex!important;align-items:stretch!important;gap:0!important;padding:0!important;
+  overflow:hidden!important;border:1px solid #aab8c7!important;border-radius:4px!important;
+  background:#111827ee!important;color:#fff!important;box-shadow:0 3px 12px #0007!important;
+}
+.mini-diamond{
+  position:relative!important;width:52px!important;height:48px!important;flex:none!important;
+  background:linear-gradient(135deg,#172235,#0b1320)!important;
+  border-right:1px solid #617086!important;
+}
+.mini-diamond:before{
+  content:"";position:absolute;left:15px;top:13px;width:20px;height:20px;
+  transform:rotate(45deg);background:#29384a;border:1px solid #64758a;
+}
+.mini-base{
+  position:absolute!important;width:9px!important;height:9px!important;z-index:2!important;
+  background:#f8d64e!important;border:1px solid #fff0a8!important;
+  transform:rotate(45deg)!important;border-radius:0!important;box-shadow:0 1px 3px #0008!important;
+}
+.mini-base.second{left:21px!important;top:7px!important}
+.mini-base.third{left:7px!important;top:21px!important}
+.mini-base.first{right:7px!important;top:21px!important}
+.mini-base.occupied{background:#c7ff4f!important;box-shadow:0 0 8px #c7ff4f!important}
+.mini-home{position:absolute;left:22px;bottom:4px;width:8px;height:7px;background:#fff;clip-path:polygon(0 0,100% 0,100% 65%,50% 100%,0 65%)}
+.score-info{display:flex!important;align-items:stretch!important;gap:0!important}
+.scoreline{min-width:72px;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:4px 8px}
+.team-label{font-size:9px!important;font-weight:1000!important;letter-spacing:.2px!important;color:#dce5f3!important}
+.scoreline strong{font-size:17px!important;font-weight:1000!important;color:#c7ff4f!important;line-height:1!important}
+.countline{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:4px!important;padding:4px 8px!important;border-left:1px solid #536176!important;background:#0b1220!important;font-size:10px!important;font-weight:900!important;white-space:nowrap!important;color:#fff!important}
+.fieldart .fieldlabel{z-index:20!important;bottom:5px!important;color:#fff!important;text-shadow:0 2px 4px #000!important;letter-spacing:1px!important}
+/* Bigger batter anchored in the near-left foreground, with a more deliberate bat silhouette */
+.fieldart .batter-art{
+  position:absolute!important;z-index:15!important;
+  left:clamp(8px,8vw,90px)!important;bottom:-13px!important;
+  width:clamp(150px,27vw,235px)!important;height:clamp(215px,39vw,330px)!important;
+  transform:none!important;transform-origin:bottom center!important;
+  filter:drop-shadow(0 8px 6px #0009)!important;
+}
+.fieldart .bat{transform-origin:99px 65px!important;animation:batReadyV11 2.2s ease-in-out infinite!important}
+@keyframes batReadyV11{0%,100%{transform:rotate(-1.8deg)}50%{transform:rotate(1.2deg)}}
+@media(min-width:700px){
+ .fieldart .crowd{top:29%!important;height:20%!important}
+ .fieldart:after{top:42%!important}
+ .fieldart .diamond{top:50%!important;width:920px!important;height:920px!important}
+ .fieldart .batter-art{left:clamp(70px,12vw,160px)!important;width:245px!important;height:350px!important}
+ .fieldart .batter-box{bottom:5%!important}
+}
+@media(max-width:520px){
+ .fieldart{height:300px!important}
+ .fieldart .crowd{top:30%!important;height:17%!important}
+ .fieldart:after{top:43%!important}
+ .fieldart .diamond{top:50%!important;width:410px!important;height:410px!important}
+ .fieldart .batter-art{left:0!important;bottom:-8px!important;width:145px!important;height:205px!important}
+ .fieldart .batter-box{bottom:5%!important;border-width:3px!important}
+ .broadcast-score{left:7px!important;top:7px!important}
+ .mini-diamond{width:43px!important;height:42px!important}
+ .mini-base.second{left:17px!important;top:6px!important}
+ .mini-base.third{left:5px!important;top:18px!important}
+ .mini-base.first{right:5px!important;top:18px!important}
+ .mini-home{left:18px!important}
+ .scoreline{min-width:62px!important;padding:4px 6px!important}
+ .scoreline strong{font-size:15px!important}
+ .countline{padding:4px 6px!important;font-size:9px!important}
+}
+
+
+/* V12: batter's-eye composition with a true side-profile hitter */
+.fieldart{
+  height:clamp(340px,55vw,470px)!important;
+  background:linear-gradient(180deg,#76b7ec 0%,#a8d1f0 22%,#d0d7d9 29%,#34475b 30%,#1b2b3d 44%,#347d40 45%,#367f40 100%)!important;
+}
+/* Stand tiers recede toward the horizon; no players or officials in the field */
+.fieldart:before{
+  top:23%!important;height:10%!important;
+  background:linear-gradient(180deg,#19283b 0%,#8b9ba6 13%,#2e4052 20%,#17263a 100%)!important;
+  border-top:2px solid #c5d4e1!important;border-bottom:3px solid #142133!important;
+}
+.fieldart .crowd{
+  top:30%!important;height:16%!important;
+  background:
+    radial-gradient(circle at 3px 4px,#f4e8d1 0 1px,transparent 1.5px),
+    radial-gradient(circle at 9px 10px,#d1e0ee 0 1px,transparent 1.5px),
+    radial-gradient(circle at 16px 6px,#f7f8fb 0 1px,transparent 1.5px),
+    repeating-linear-gradient(90deg,#667888 0 4px,#293c50 4px 8px,#9aa6ad 8px 10px,#34485a 10px 15px)!important;
+  background-size:19px 15px,23px 17px,29px 18px,100% 100%!important;
+}
+/* Grass fills the outfield; the foreground is a broad, perspective dirt apron. */
+.fieldart:after{
+  top:43%!important;bottom:0!important;left:-4%!important;right:-4%!important;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%)!important;
+  background:
+    linear-gradient(180deg,#2e7c3f 0%,#368747 35%,#2b793f 68%,#236637 100%),
+    repeating-linear-gradient(90deg,#ffffff08 0 55px,#00000005 55px 110px)!important;
+}
+.fieldart .diamond{
+  top:48%!important;left:50%!important;width:100%!important;height:55%!important;
+  transform:none!important;transform-origin:center!important;
+  clip-path:polygon(0 0,100% 0,77% 100%,23% 100%)!important;
+  background:linear-gradient(180deg,#b7835d 0%,#c5946a 65%,#b98258 100%)!important;
+  border:0!important;box-shadow:none!important;border-radius:0!important;
+  opacity:1!important;z-index:2!important;
+}
+.fieldart .foul-line{
+  bottom:0!important;height:57%!important;width:3px!important;z-index:5!important;
+  background:linear-gradient(180deg,#fff9e9,#fffdf5)!important;
+  box-shadow:0 0 2px #fff8!important;opacity:1!important;
+}
+.fieldart .foul-line.left{left:50%!important;transform:rotate(34deg)!important}
+.fieldart .foul-line.right{right:50%!important;transform:rotate(-34deg)!important}
+.fieldart .batter-box{
+  bottom:6%!important;width:clamp(56px,9vw,90px)!important;height:clamp(42px,7vw,68px)!important;
+  border:4px solid #f8f7ef!important;border-bottom:0!important;
+  background:transparent!important;z-index:6!important;
+}
+.fieldart .batter-box:not(.right){left:calc(50% - clamp(108px,18vw,175px))!important}
+.fieldart .batter-box.right{left:calc(50% + clamp(35px,8vw,90px))!important}
+/* Side-on hitter: helmet, profile, bent knees and a bat over the shoulder. */
+.fieldart .batter-art{
+  left:clamp(16px,9vw,120px)!important;
+  bottom:-12px!important;
+  width:clamp(175px,28vw,270px)!important;
+  height:clamp(250px,40vw,375px)!important;
+  z-index:18!important;
+  transform:none!important;
+  filter:drop-shadow(0 8px 7px #000a)!important;
+}
+.fieldart .bat{transform-origin:100px 75px!important;animation:sideBatReady 2.1s ease-in-out infinite!important}
+@keyframes sideBatReady{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1.2deg)}}
+.fieldart .fieldlabel{z-index:22!important}
+@media(max-width:520px){
+  .fieldart{height:310px!important}
+  .fieldart:before{top:22%!important;height:9%!important}
+  .fieldart .crowd{top:29%!important;height:16%!important}
+  .fieldart:after{top:43%!important}
+  .fieldart .diamond{top:50%!important;height:50%!important}
+  .fieldart .batter-art{left:0!important;bottom:-8px!important;width:165px!important;height:235px!important}
+  .fieldart .batter-box{bottom:5%!important;border-width:3px!important}
+  .fieldart .foul-line{height:54%!important}
+}
+
+
+/* V13: single-tone field, scoring feedback, swing-and-miss animation, compact mobile layout */
+.fieldart{
+  background:#347d40!important;
+}
+.fieldart:after{
+  background:#347d40!important;
+  background-image:none!important;
+  clip-path:none!important;
+}
+.fieldart .diamond{
+  background:#347d40!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  clip-path:none!important;
+  opacity:1!important;
+}
+.fieldart .crowd{
+  /* keep the distant stands, but all visible playing surface stays a single green */
+  border-bottom-color:#1b2b3c!important;
+}
+.score-toast{
+  position:absolute;z-index:35;left:50%;top:27%;
+  transform:translate(-50%,-10px) scale(.65);
+  opacity:0;pointer-events:none;
+  padding:12px 20px;border-radius:14px;
+  color:#13200a;background:linear-gradient(135deg,#e6ff78,#a9f52d);
+  border:2px solid #f6ffcb;
+  box-shadow:0 0 0 5px #c7ff4f22,0 10px 30px #0007;
+  font-size:clamp(20px,5vw,34px);font-weight:1000;letter-spacing:.5px;
+  text-shadow:0 1px #ffffff80;
+}
+.score-toast.show{animation:scoreToastPop 1.25s cubic-bezier(.2,.85,.25,1) forwards}
+@keyframes scoreToastPop{
+  0%{opacity:0;transform:translate(-50%,15px) scale(.45) rotate(-5deg)}
+  16%{opacity:1;transform:translate(-50%,0) scale(1.12) rotate(2deg)}
+  28%{transform:translate(-50%,0) scale(1) rotate(0)}
+  78%{opacity:1;transform:translate(-50%,-12px) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-35px) scale(.88)}
+}
+.stadium.score-burst{animation:stadiumScoreBurst .65s ease-out}
+@keyframes stadiumScoreBurst{
+  0%{box-shadow:0 0 0 0 #c7ff4f00}
+  35%{box-shadow:0 0 0 7px #c7ff4f99,0 0 38px #c7ff4f99}
+  100%{box-shadow:inset 0 -25px 50px #10281b66,0 14px 35px #0005}
+}
+#sceneRuns.score-bump{animation:scoreBump .55s cubic-bezier(.2,.9,.2,1)}
+@keyframes scoreBump{0%{transform:scale(1)}35%{transform:scale(1.55);color:#fff}100%{transform:scale(1);color:#c7ff4f}}
+/* Whiff: whole hitter recoils and the bat whips through the zone */
+.fieldart .batter-art.miss-swing{
+  animation:missSwing .62s cubic-bezier(.3,.8,.2,1) both!important;
+  transform-origin:28% 78%!important;
+}
+.fieldart .batter-art.miss-swing .bat{
+  animation:batWhiff .42s ease-in both!important;
+  transform-origin:100px 75px!important;
+}
+@keyframes missSwing{
+  0%{transform:rotate(0) translateX(0)}
+  28%{transform:rotate(-5deg) translateX(-3px)}
+  58%{transform:rotate(12deg) translateX(5px)}
+  78%{transform:rotate(7deg) translateX(2px)}
+  100%{transform:rotate(0) translateX(0)}
+}
+@keyframes batWhiff{
+  0%{transform:rotate(0)}
+  35%{transform:rotate(35deg)}
+  72%{transform:rotate(72deg)}
+  100%{transform:rotate(0)}
+}
+/* Keep the field and the vocabulary question visible together on a phone. */
+@media(max-width:600px){
+  body{font-size:14px}
+  .top{padding:8px 12px}
+  .brandrow{gap:8px}
+  .logoicon{width:34px;height:34px}
+  .eyebrow{font-size:8px}
+  .brand{font-size:17px}
+  .sub{font-size:10px}
+  .pill{font-size:10px;padding:6px 8px}
+  main{padding:0 8px 12px!important}
+  .nav{position:sticky;top:0;z-index:45;margin:5px 0 7px;padding:4px;gap:4px}
+  .nav button{padding:7px 5px;font-size:10px;white-space:nowrap}
+  #game>.panel:first-child{padding:9px!important;margin-bottom:7px!important}
+  #game>.panel:first-child .panelhead{margin-bottom:5px!important}
+  #game>.panel:first-child .panelhead h2{font-size:15px!important}
+  #game>.panel:first-child .stats{display:none!important}
+  .stadium{margin:6px 0 7px!important;border-radius:12px!important}
+  .stadiumtop{padding:6px 8px!important;font-size:9px!important}
+  .fieldart{height:clamp(150px,27vh,215px)!important}
+  .fieldart:before{top:22%!important;height:9%!important}
+  .fieldart .crowd{top:29%!important;height:15%!important}
+  .fieldart:after{top:43%!important}
+  .fieldart .diamond{top:49%!important;height:51%!important}
+  .fieldart .batter-art{left:0!important;bottom:-5px!important;width:clamp(105px,30vw,145px)!important;height:clamp(150px,42vw,205px)!important}
+  .fieldart .batter-box{bottom:4%!important;width:45px!important;height:30px!important;border-width:2px!important}
+  .fieldart .batter-box:not(.right){left:calc(50% - 85px)!important}
+  .fieldart .batter-box.right{left:calc(50% + 35px)!important}
+  .fieldart .foul-line{height:52%!important;width:2px!important}
+  .fieldart .fieldlabel{font-size:7px!important;bottom:3px!important}
+  .broadcast-score{left:6px!important;top:6px!important;transform:scale(.78);transform-origin:top left}
+  .score-toast{top:30%;padding:7px 12px;font-size:22px}
+  #game>.panel:first-child .btnrow{gap:6px!important;margin-top:5px!important}
+  #game>.panel:first-child .btn{padding:9px 8px!important;min-height:36px!important;font-size:12px!important}
+  #gameCard{padding:9px!important;margin-top:0!important}
+  #gameCard .questionarea{padding:0!important}
+  #gameCard .qtop{gap:5px!important}
+  #gameCard .tag{font-size:9px!important;padding:4px 7px!important}
+  #gameCard .word{font-size:clamp(24px,7vw,32px)!important;margin:5px 0 3px!important}
+  #gameCard .hint{font-size:10px!important}
+  #gameCard .answers{gap:6px!important;margin:8px 0 4px!important}
+  #gameCard .answer{min-height:48px!important;padding:8px!important;border-radius:10px!important;font-size:11px!important;line-height:1.25!important}
+  #gameCard .answer .letter{width:18px!important;height:18px!important;margin-right:4px!important;font-size:9px!important}
+  #gameCard .answer small{font-size:9px!important;margin:3px 0 0 22px!important}
+  #gameCard .feedback{min-height:26px!important;padding:4px 0!important;font-size:10px!important}
+  #gameCard #nextGame{padding:8px!important;min-height:34px!important;font-size:12px!important}
+}
+@media(max-width:380px){
+  .fieldart{height:145px!important}
+  .fieldart .batter-art{width:100px!important;height:145px!important}
+  #gameCard .answer{font-size:10px!important;padding:7px!important}
+  #gameCard .word{font-size:24px!important}
+  .nav button{font-size:9px!important}
+}
+
+
+/* V14: base indicators are white when empty and yellow when occupied */
+.broadcast-score .mini-base{
+  background:#ffffff!important;
+  border:1px solid #e7edf5!important;
+  box-shadow:0 1px 3px #0008!important;
+}
+.broadcast-score .mini-base.occupied{
+  background:#ffd83d!important;
+  border:1px solid #fff0a1!important;
+  box-shadow:0 0 9px #ffd83d99,0 1px 3px #0008!important;
+}
+
+
+/* V15: manual end-game action, visible only during an active game */
+#endGameEarly{border-color:#66738b!important;color:#dce4f3!important;background:#202b40!important}
+#endGameEarly:not(.hidden){display:block!important}
+@media(max-width:600px){
+  #endGameEarly:not(.hidden){min-height:32px!important;padding:7px!important;font-size:11px!important;margin-top:5px!important}
+}
+
+
+/* V16: successful answer = bat-ball contact and a visible hit trajectory */
+.fieldart .batter-art.hit-swing{
+  animation: hitterHitFollowThrough .58s cubic-bezier(.2,.8,.25,1) both!important;
+  transform-origin:28% 78%!important;
+}
+.fieldart .batter-art.hit-swing .bat{
+  animation: batHitThrough .48s cubic-bezier(.18,.78,.22,1) both!important;
+  transform-origin:100px 75px!important;
+}
+@keyframes hitterHitFollowThrough{
+  0%{transform:rotate(0) translateX(0)}
+  24%{transform:rotate(-2deg) translateX(0)}
+  52%{transform:rotate(7deg) translateX(4px)}
+  76%{transform:rotate(4deg) translateX(3px)}
+  100%{transform:rotate(0) translateX(0)}
+}
+@keyframes batHitThrough{
+  0%{transform:rotate(0)}
+  18%{transform:rotate(-8deg)}
+  45%{transform:rotate(52deg)}
+  66%{transform:rotate(82deg)}
+  100%{transform:rotate(35deg)}
+}
+.hit-ball{
+  position:absolute;z-index:28;left:25%;bottom:36%;
+  font-size:clamp(15px,3vw,24px);line-height:1;
+  opacity:0;pointer-events:none;filter:drop-shadow(0 2px 2px #0009);
+  transform:translate(0,0) scale(.8);
+}
+.hit-ball.fly{animation:ballFlight .85s cubic-bezier(.15,.55,.25,1) forwards}
+@keyframes ballFlight{
+  0%{opacity:0;transform:translate(0,0) scale(.65) rotate(0)}
+  8%{opacity:1;transform:translate(8px,-5px) scale(1) rotate(45deg)}
+  30%{opacity:1;transform:translate(70px,-75px) scale(.9) rotate(180deg)}
+  65%{opacity:1;transform:translate(175px,-125px) scale(.62) rotate(360deg)}
+  100%{opacity:0;transform:translate(270px,-155px) scale(.3) rotate(540deg)}
+}
+.hit-spark{
+  position:absolute;z-index:29;left:27%;bottom:39%;font-size:30px;font-weight:1000;
+  color:#fff4a3;text-shadow:0 0 8px #ffdf48,0 0 18px #fff;
+  opacity:0;pointer-events:none;transform:scale(.2) rotate(0);
+}
+.hit-spark.burst{animation:hitSparkBurst .38s ease-out forwards}
+@keyframes hitSparkBurst{
+  0%{opacity:0;transform:scale(.2) rotate(0)}
+  35%{opacity:1;transform:scale(1.4) rotate(35deg)}
+  100%{opacity:0;transform:scale(1.9) rotate(80deg)}
+}
+.stadium.hit-impact{animation:hitImpact .28s ease-out}
+@keyframes hitImpact{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-2px)}
+  55%{transform:translateX(2px)}
+}
+@media(max-width:600px){
+ .hit-ball{left:24%;bottom:34%;font-size:17px}
+ .hit-spark{left:26%;bottom:37%;font-size:24px}
+ @keyframes ballFlight{
+  0%{opacity:0;transform:translate(0,0) scale(.65) rotate(0)}
+  8%{opacity:1;transform:translate(5px,-4px) scale(1) rotate(45deg)}
+  30%{opacity:1;transform:translate(42px,-43px) scale(.85) rotate(180deg)}
+  65%{opacity:1;transform:translate(95px,-76px) scale(.55) rotate(360deg)}
+  100%{opacity:0;transform:translate(145px,-95px) scale(.25) rotate(540deg)}
+ }
+}
+
+
+/* V17: make the hit baseball clearly visible at phone size */
+.hit-ball{
+  width:clamp(34px,8vw,54px)!important;
+  height:clamp(34px,8vw,54px)!important;
+  font-size:0!important;
+  line-height:0!important;
+  opacity:0;
+  overflow:visible!important;
+  filter:drop-shadow(0 3px 4px #000b)!important;
+  z-index:42!important;
+}
+.hit-ball-svg{display:block;width:100%;height:100%;overflow:visible}
+.hit-ball.fly{animation:ballFlightV17 .95s cubic-bezier(.15,.55,.25,1) forwards!important}
+@keyframes ballFlightV17{
+  0%{opacity:0;transform:translate(0,0) scale(.55) rotate(0)}
+  7%{opacity:1;transform:translate(5px,-4px) scale(1.15) rotate(35deg)}
+  24%{opacity:1;transform:translate(48px,-52px) scale(1.05) rotate(130deg)}
+  52%{opacity:1;transform:translate(115px,-88px) scale(.88) rotate(260deg)}
+  78%{opacity:1;transform:translate(190px,-115px) scale(.68) rotate(400deg)}
+  100%{opacity:0;transform:translate(260px,-135px) scale(.48) rotate(540deg)}
+}
+@media(max-width:600px){
+ .hit-ball{width:34px!important;height:34px!important;left:23%!important;bottom:34%!important}
+ @keyframes ballFlightV17{
+  0%{opacity:0;transform:translate(0,0) scale(.55) rotate(0)}
+  7%{opacity:1;transform:translate(3px,-3px) scale(1.2) rotate(35deg)}
+  25%{opacity:1;transform:translate(28px,-30px) scale(1.08) rotate(130deg)}
+  55%{opacity:1;transform:translate(65px,-55px) scale(.9) rotate(260deg)}
+  80%{opacity:1;transform:translate(105px,-72px) scale(.72) rotate(400deg)}
+  100%{opacity:0;transform:translate(145px,-85px) scale(.5) rotate(540deg)}
+ }
+}
+
+
+.paused-overlay{position:absolute;inset:0;z-index:20;background:#07101de8;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#d2ff4d;border-radius:inherit}.hidden{display:none!important}#matchHistory .wordrow{align-items:flex-start}.inning-break{border:1px solid #caff4a;border-radius:12px;padding:12px;margin-top:10px;color:#d7ff61;font-weight:800;text-align:center}.timer-low{color:#ff667b!important}.hit-ball.homer-fly{animation:homerFly 1.3s cubic-bezier(.18,.62,.25,1) forwards!important;z-index:30}@keyframes homerFly{0%{transform:translate(0,0) scale(1);opacity:1}25%{transform:translate(12vw,-12vh) scale(1.25) rotate(150deg)}60%{transform:translate(31vw,-42vh) scale(1.1) rotate(420deg)}100%{transform:translate(48vw,-68vh) scale(.55) rotate(720deg);opacity:.05}}@media(max-width:420px){.stadiumtop{gap:6px;font-size:11px}}
+</style></head>
+<body>
+<div id="playFlash" class="play-flash" aria-hidden="true">
+<div class="burst"></div>
+<span class="spark" style="--dx:-34vw;--dy:-22vh;left:50%;top:50%">✦</span>
+<span class="spark" style="--dx:31vw;--dy:-25vh;left:50%;top:50%">✦</span>
+<span class="spark" style="--dx:-29vw;--dy:24vh;left:50%;top:50%">★</span>
+<span class="spark" style="--dx:33vw;--dy:23vh;left:50%;top:50%">✦</span>
+<div class="result-title"><div id="playFlashTitle">HIT!</div><div class="result-sub" id="playFlashSub">NICE SWING</div></div>
+</div>
+
+<header class="top"><div class="brandrow"><div class="logo"><div class="logoicon">⚾</div><div><div class="eyebrow">TRANSFER VOCAB ARCADE</div><div class="brand">WORD LEAGUE</div><div class="sub">편입영어 실전 단어 리그</div></div></div><div class="pill" id="totalPill">113 WORDS</div></div></header>
+<main>
+<nav class="nav"><button class="active" data-tab="game">⚾ 야구 리그</button><button data-tab="test">🎯 단어 테스트</button><button data-tab="mistakes">🔥 오답 훈련</button><button data-tab="library">📚 단어장</button></nav>
+<section id="game" class="view">
+<div class="panel">
+<div class="panelhead"><h2>오늘의 경기</h2><span class="tag hot" id="gameMode">전체 단어</span></div>
+<div class="stats"><div class="stat lime"><b id="runs">0</b><span>RUNS</span></div><div class="stat pink"><b id="outs">0</b><span>OUTS</span></div><div class="stat cyan"><b id="hits">0</b><span>HITS</span></div><div class="stat"><b id="homers">0</b><span>HOME RUN</span></div></div>
+<div class="stadium"><div class="stadiumtop"><span class="count-lights-wrap"><span class="count-lights-label">STRIKE</span><span id="strikeLights" class="count-lights" aria-label="스트라이크 0개"><i></i><i></i></span></span><span id="inning">1회 · 공격 중</span><span id="countDisplay">STRIKE 0 · OUT 0</span><span id="progress">타석 준비</span></div><div class="fieldart">
+<div class="crowd"></div>
+<div class="broadcast-score">
+  <div class="mini-diamond" aria-label="주자 상황">
+    <span class="mini-base second" id="base2"></span>
+    <span class="mini-base third" id="base3"></span>
+    <span class="mini-base first" id="base1"></span>
+    <span class="mini-home"></span>
+  </div>
+  <div class="score-info">
+    <div class="scoreline"><span class="team-label">WORD LEAGUE</span><strong id="sceneRuns">0 RUN</strong></div>
+    <div class="countline"><span id="sceneOuts">OUT 0</span><span id="sceneInning">TOP 1</span></div>
+  </div>
+</div>
+<div class="stadium-light"></div><div id="pausedOverlay" class="paused-overlay hidden">일시정지</div><div id="scoreToast" class="score-toast" aria-hidden="true">+1 RUN!</div>
+<div id="hitBall" class="hit-ball" aria-hidden="true">
+  <svg class="hit-ball-svg" viewBox="0 0 64 64" role="img" aria-label="야구공">
+    <defs>
+      <radialGradient id="ballWhite" cx="30%" cy="24%" r="76%">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".68" stop-color="#fffdf5"/>
+        <stop offset="1" stop-color="#d6deea"/>
+      </radialGradient>
+      <filter id="ballShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity=".65"/>
+      </filter>
+    </defs>
+    <g filter="url(#ballShadow)">
+      <circle cx="32" cy="32" r="27" fill="url(#ballWhite)" stroke="#263246" stroke-width="2.5"/>
+      <path d="M17 8 C29 18 29 46 17 56" fill="none" stroke="#e1263c" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M47 8 C35 18 35 46 47 56" fill="none" stroke="#e1263c" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M17 13 l5 2 M15 19 l6 2 M14 26 l6 1 M14 34 l6 -1 M15 42 l6 -2 M17 49 l5 -2" fill="none" stroke="#e1263c" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M47 13 l-5 2 M49 19 l-6 2 M50 26 l-6 1 M50 34 l-6 -1 M49 42 l-6 -2 M47 49 l-5 -2" fill="none" stroke="#e1263c" stroke-width="2.4" stroke-linecap="round"/>
+      <ellipse cx="22" cy="17" rx="8" ry="4" fill="#ffffff" opacity=".65" transform="rotate(-35 22 17)"/>
+    </g>
+  </svg>
+</div>
+<div id="hitSpark" class="hit-spark" aria-hidden="true">✦</div>
+<div class="foul-line left"></div><div class="foul-line right"></div>
+<div class="diamond" aria-hidden="true"></div>
+<div class="batter-box"></div><div class="batter-box right"></div>
+<span class="runner hidden" id="runner1">🏃</span><span class="runner hidden" id="runner2">🏃</span><span class="runner hidden" id="runner3">🏃</span>
+<svg class="batter-art" viewBox="0 0 180 260" role="img" aria-label="옆모습으로 타격 자세를 취한 야구 타자">
+  <defs>
+    <linearGradient id="sideJersey" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f5f7fb"/><stop offset=".45" stop-color="#dce3ed"/><stop offset="1" stop-color="#8e9bad"/>
+    </linearGradient>
+    <linearGradient id="sidePants" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#f4f5f7"/><stop offset=".55" stop-color="#cbd2dc"/><stop offset="1" stop-color="#8d98a8"/>
+    </linearGradient>
+    <linearGradient id="sideBat" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f4d49a"/><stop offset=".22" stop-color="#bd8548"/><stop offset=".55" stop-color="#8b572f"/><stop offset=".78" stop-color="#d9aa68"/><stop offset="1" stop-color="#6d4327"/>
+    </linearGradient>
+  </defs>
+  <!-- bat held over the back shoulder -->
+  <g class="bat">
+    <path d="M92 95 L145 15 Q149 8 154 12 L161 17 Q164 20 159 26 L101 105 Z"
+      fill="url(#sideBat)" stroke="#4a2e1b" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M100 94 L153 20" stroke="#ffe3b0" stroke-width="2.5" stroke-linecap="round" opacity=".85"/>
+    <path d="M91 95 L102 103" stroke="#202838" stroke-width="5" stroke-linecap="round"/>
+    <path d="M94 92 L103 99" stroke="#f2f3f6" stroke-width="2" stroke-linecap="round"/>
+    <path d="M115 66 L123 55 M128 48 L136 37" stroke="#684020" stroke-width="1.4" opacity=".9"/>
+  </g>
+  <!-- back leg and front leg, clearly separated in profile -->
+  <path d="M68 151 L100 158 L119 201 L144 224 L131 236 L96 218 L75 187 L54 173 Z"
+    fill="#111827" stroke="#080d16" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M50 157 L79 164 L65 205 L48 232 L18 232 L15 222 L35 214 L42 180 Z"
+    fill="#182132" stroke="#080d16" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M18 222 L48 224 L45 239 L10 242 Q2 239 7 231 Z"
+    fill="#e9edf3" stroke="#202635" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M128 224 L146 218 L163 230 L158 240 L130 239 L121 233 Z"
+    fill="#e9edf3" stroke="#202635" stroke-width="3" stroke-linejoin="round"/>
+  <!-- belt and pants -->
+  <path d="M46 104 Q69 98 89 111 L102 153 Q83 169 48 151 L36 126 Z"
+    fill="url(#sidePants)" stroke="#667386" stroke-width="2.5"/>
+  <path d="M43 111 L89 126" stroke="#a5afbd" stroke-width="2"/>
+  <path d="M47 108 L89 117" stroke="#242d3b" stroke-width="5"/>
+  <!-- torso turned sideways toward the pitcher -->
+  <path d="M45 55 Q59 43 79 55 L96 79 L85 115 L47 109 L33 81 Z"
+    fill="#172d50" stroke="#0b1427" stroke-width="3"/>
+  <path d="M45 58 L37 77 L49 91 L58 84 L53 68" fill="#e6ebf2" stroke="#a9b5c4" stroke-width="2.5"/>
+  <path d="M79 58 L91 68 L96 84 L85 91 L73 75" fill="#172d50" stroke="#0b1427" stroke-width="3"/>
+  <path d="M47 104 L84 111" stroke="#e9edf4" stroke-width="3"/>
+  <path d="M55 64 L69 76 L64 83" fill="none" stroke="#c7d2e0" stroke-width="2" opacity=".9"/>
+  <!-- Featureless single-tone side-profile face; helmet only, no hair or facial features -->
+  <path d="M58 48 L58 61 L71 67 L79 55 L73 45 Z"
+    fill="#c99672" stroke="#c99672" stroke-width="1"/>
+  <path d="M47 29 Q49 12 65 12 Q80 13 82 29 L79 40 L72 49 L59 46 L50 39 Z"
+    fill="#c99672" stroke="#c99672" stroke-width="1"/>
+  <path d="M70 35 L82 38 L77 42 L71 41 Z" fill="#c99672" stroke="#c99672" stroke-width="1"/>
+  <path d="M45 29 Q41 9 61 5 Q81 2 88 20 L84 29 L65 22 L49 28 Z"
+    fill="#101827" stroke="#050811" stroke-width="3"/>
+  <path d="M47 28 L84 27" stroke="#aab6c7" stroke-width="3"/>
+  <!-- arms and gloved hands gripping the bat -->
+  <path d="M81 63 L96 72 L106 60 L113 66 L103 84 L91 86 L75 75 Z"
+    fill="#d59a73" stroke="#754b3b" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M44 64 L58 77 L72 68 L79 75 L66 88 L52 86 L37 73 Z"
+    fill="#d59a73" stroke="#754b3b" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M103 58 L111 57 L116 63 L110 71 L101 68 Z"
+    fill="#f2f4f8" stroke="#9ca7b7" stroke-width="2"/>
+  <path d="M72 67 L82 62 L90 68 L86 76 L77 75 Z"
+    fill="#f2f4f8" stroke="#9ca7b7" stroke-width="2"/>
+  <!-- jersey seam / number detail -->
+  <path d="M55 88 L69 96 L77 89" fill="none" stroke="#d5deeb" stroke-width="2"/>
+  <path d="M54 99 L63 101" stroke="#d5deeb" stroke-width="2"/>
+</svg>
+
+
+</div></div>
+<div class="grid2" style="margin-top:12px"><label class="muted">경기 단어장<select class="field" id="gameDeck"><option value="__all">전체 단어장</option></select></label><label class="muted">타이머<div class="field" style="display:flex;align-items:center;justify-content:space-between"><b id="timerText">5.0초</b><span id="strikeDots" class="hidden">○ ○</span></div></label></div>
+<div class="btnrow"><button class="btn primary" id="startGame">▶ 경기 시작</button><button class="btn secondary" id="wrongGame">오답 복수전</button><button class="btn secondary" id="pauseGame">일시정지</button></div>
+<p class="muted" style="margin:11px 1px 0">정답이 아닌 선지를 고르면 아웃입니다. 5초가 지날 때마다 스트라이크가 쌓이며, 3스트라이크마다 타자 아웃입니다. 같은 문제는 정답을 고를 때까지 계속됩니다. 5회까지 진행합니다.</p>
+</div>
+<div class="panel" id="gameCard"><div class="questionarea"><div class="qtop"><span class="tag pos" id="gamePos">품사</span><span class="tag" id="gameYear">건국대 · 2024</span></div><div class="word" id="gameWord">경기를 시작하세요</div><div class="hint" id="gameHint">뜻과 품사를 함께 익히는 편입영어 퀴즈</div></div><div class="answers" id="gameAnswers"></div><div class="feedback" id="gameFeedback">준비되면 경기 시작을 누르세요.</div><button class="btn primary hidden" id="nextGame" style="width:100%">다음 타석 →</button><button class="btn secondary hidden" id="endGameEarly" style="width:100%;margin-top:8px">경기 종료</button></div><div class="panel"><div class="panelhead"><h2>경기 전적</h2><button class="btn secondary" id="clearMatchHistory" style="padding:7px 10px">기록 삭제</button></div><div id="matchHistory" class="list"><div class="empty">아직 경기 기록이 없습니다.</div></div></div>
+</section>
+<section id="test" class="view hidden">
+<div class="panel"><div class="panelhead"><h2>실전 단어 테스트</h2><span class="tag">FULL COVERAGE</span></div><p class="muted">시트2의 모든 단어를 대상으로 출제합니다. 영어·품사·뜻을 한 세트로 학습하고, 오답은 자동 누적됩니다.</p><div class="grid2"><label class="muted">출제 방향<select class="field" id="direction"><option value="enko">영단어 → 뜻 고르기</option><option value="koen">뜻 → 영단어 고르기</option></select></label><label class="muted">문제 수<select class="field" id="count"><option value="all">전체 단어</option><option value="50">50문제</option><option value="20">20문제</option></select></label></div><button class="btn primary" id="startTest" style="width:100%">테스트 시작 →</button></div>
+<div class="panel hidden" id="testCard"><div class="panelhead"><h2>문제 풀이</h2><span class="tag" id="testProgress">1 / 113</span></div><div class="questionarea"><div class="qtop"><span class="tag pos" id="testPos">품사</span></div><div class="word" id="testWord"></div><div class="hint" id="testHint">정답을 선택하세요</div></div><div class="answers" id="testAnswers"></div><div class="feedback" id="testFeedback"></div><button class="btn primary hidden" id="nextTest" style="width:100%">다음 문제 →</button></div>
+<div class="panel hidden" id="testResult"><div class="confetti">★ ✦ ★</div><h2 style="margin:8px 0">테스트 결과</h2><div class="stats" style="margin:14px 0"><div class="stat lime"><b id="testScore">0</b><span>정답</span></div><div class="stat"><b id="testTotal">0</b><span>전체</span></div><div class="stat cyan"><b id="testRate">0%</b><span>정답률</span></div><div class="stat pink"><b id="testWrong">0</b><span>오답</span></div></div><button class="btn primary" id="testAgain" style="width:100%">다시 도전 →</button></div>
+</section>
+<section id="mistakes" class="view hidden">
+<div class="panel"><div class="panelhead"><h2>🔥 오답 복수전</h2><span class="tag hot" id="wrongCount">0개</span></div><p class="muted">틀린 횟수가 많은 단어부터 집중 훈련합니다. 야구 경기에서 오답 누적 2회 이상인 단어를 맞히면 홈런 판정입니다.</p><div class="btnrow"><button class="btn primary" id="startWrongTest">오답 테스트</button><button class="btn secondary" id="clearWrong">오답 기록 전체 초기화</button></div><div class="list" id="wrongList" style="margin-top:13px"></div></div>
+</section>
+<section id="library" class="view hidden">
+<div class="panel"><div class="panelhead"><h2>단어장 & 파일 가져오기</h2><span class="tag" id="libraryCount">113개</span></div><p class="muted">엑셀 파일을 선택하면 <b>시트2만 자동으로 읽고</b> 단어·품사·뜻을 추출합니다. 건국대 파일은 이미 등록되어 있습니다. 다음 학교 파일도 같은 방식으로 추가할 수 있습니다.</p><label class="muted">학교 / 연도 이름<input class="field" id="sourceName" placeholder="예: 한국외대 2025"></label><label class="muted">Excel / CSV 파일 선택<input class="field" id="fileInput" type="file" accept=".xlsx,.xls,.xlsm,.csv"></label><div id="importStatus" class="notice">가져올 파일을 선택하세요. 시트2의 B열(단어), C열(뜻), F열(출제년도)을 읽어 연도별로 분류합니다.</div><div class="btnrow" style="margin-top:10px"><button class="btn secondary" id="exportCsv">CSV 백업</button><button class="btn secondary" id="resetSeed">원본 113단어 복구</button><button class="btn danger" id="clearAllWords">저장된 단어 전체 삭제</button></div></div>
+<div class="panel"><div class="panelhead"><h2>전체 단어 검색</h2><span class="muted">영단어 · 품사 · 뜻</span></div><input class="field" id="search" placeholder="단어, 뜻, 품사 검색"><div class="list" id="wordList"></div></div>
+</section>
+<div class="footer">WORD LEAGUE · local-first vocabulary practice · 진행 기록은 이 브라우저에 저장됩니다.</div>
+</main><div id="gameOverScreen" class="gameover-screen hidden" role="dialog" aria-modal="true" aria-labelledby="gameOverTitle">
+  <div class="gameover-card">
+    <div class="confetti">⚾ ✦ ⚾</div>
+    <div class="gameover-kicker">WORD LEAGUE · FINAL SCORE</div>
+    <div id="gameOverTitle" class="gameover-title">GAME OVER</div>
+    <div class="gameover-sub" id="gameOverSub">쓰리 아웃! 이번 경기가 종료되었습니다.<br>틀린 단어를 복습하고 다시 도전하세요.</div>
+    <div class="gameover-score"><span id="finalRuns">0</span> RUN</div>
+    <div class="gameover-stats"><span>안타 <b id="finalHits">0</b></span><span>홈런 <b id="finalHomers">0</b></span><span>아웃 <b id="finalOuts">3</b></span></div>
+    <div class="btnrow"><button class="btn primary" id="restartAfterGameOver">다시 경기</button><button class="btn secondary" id="reviewAfterGameOver">오답 복습</button></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const SEED=[{"word":"transparent","pos":"a","meaning":"투명한, 명백한","source":"건국대","year":"2024"},{"word":"multi-functional","pos":"a","meaning":"다기능의","source":"건국대","year":"2024"},{"word":"unification","pos":"n","meaning":"통일, 통합","source":"건국대","year":"2024"},{"word":"provision","pos":"n","meaning":"공급, 제공, 조항","source":"건국대","year":"2024"},{"word":"regressive","pos":"a","meaning":"퇴보하는, 역행하는","source":"건국대","year":"2024"},{"word":"orthodox","pos":"a","meaning":"정통의, 전통적인","source":"건국대","year":"2024"},{"word":"obtuse","pos":"a","meaning":"둔한, 이해가 느린, 둔각의","source":"건국대","year":"2024"},{"word":"enlighten","pos":"vt","meaning":"계몽하다, 이해를 돕다","source":"건국대","year":"2024"},{"word":"concentration","pos":"n","meaning":"집중, 농도, 집결","source":"건국대","year":"2024"},{"word":"repulsive","pos":"a","meaning":"혐오감을 일으키는, 역겨운","source":"건국대","year":"2024"},{"word":"abstruseness","pos":"n","meaning":"난해함, 이해하기 어려움","source":"건국대","year":"2024"},{"word":"precarious","pos":"a","meaning":"불안정한, 위태로운, 불확실한","source":"건국대","year":"2024"},{"word":"raw","pos":"a","meaning":"날것의, 가공되지 않은, 미숙한","source":"건국대","year":"2024"},{"word":"congenial","pos":"a","meaning":"마음이 맞는, 쾌적한, 적합한","source":"건국대","year":"2024"},{"word":"satisfactory","pos":"a","meaning":"만족스러운, 충분한","source":"건국대","year":"2024"},{"word":"aspect","pos":"n","meaning":"측면, 양상","source":"건국대","year":"2024"},{"word":"persuade","pos":"vt","meaning":"설득하다","source":"건국대","year":"2024"},{"word":"disparity","pos":"n","meaning":"차이, 서로 다름","source":"건국대","year":"2024"},{"word":"cold-hearted","pos":"a","meaning":"냉혹한, 무정한","source":"건국대","year":"2024"},{"word":"verbose","pos":"a","meaning":"장황한, 말이 많은","source":"건국대","year":"2024"},{"word":"cynical","pos":"a","meaning":"냉소적인, 비관적인","source":"건국대","year":"2024"},{"word":"procrastinate","pos":"vi","meaning":"미루다, 질질 끌다","source":"건국대","year":"2024"},{"word":"clandestine","pos":"a","meaning":"비밀의, 은밀한","source":"건국대","year":"2024"},{"word":"incongruity","pos":"n","meaning":"부조화, 불일치","source":"건국대","year":"2024"},{"word":"ubiquity","pos":"n","meaning":"편재, 도처에 존재함","source":"건국대","year":"2024"},{"word":"inconsistent","pos":"a","meaning":"일관성 없는, 모순되는","source":"건국대","year":"2024"},{"word":"hedonistic","pos":"a","meaning":"쾌락주의의, 쾌락을 추구하는","source":"건국대","year":"2024"},{"word":"dependency","pos":"n","meaning":"의존, 종속, 의존성","source":"건국대","year":"2024"},{"word":"authentic","pos":"a","meaning":"진짜의, 진정한","source":"건국대","year":"2024"},{"word":"parsimony","pos":"n","meaning":"인색함, 절약","source":"건국대","year":"2024"},{"word":"characteristic","pos":"n","meaning":"특성, 특징","source":"건국대","year":"2024"},{"word":"veritable","pos":"a","meaning":"진정한, 참된, 실제의","source":"건국대","year":"2024"},{"word":"specificity","pos":"n","meaning":"구체성, 특수성, 명확성","source":"건국대","year":"2024"},{"word":"incarcerate","pos":"vt","meaning":"투옥하다, 감금하다","source":"건국대","year":"2024"},{"word":"convenience","pos":"n","meaning":"편리함, 편의","source":"건국대","year":"2024"},{"word":"infuriate","pos":"vt","meaning":"격분시키다","source":"건국대","year":"2024"},{"word":"dissonance","pos":"n","meaning":"불협화음, 부조화, 불일치","source":"건국대","year":"2024"},{"word":"equivocality","pos":"n","meaning":"모호함, 애매함","source":"건국대","year":"2024"},{"word":"shabby","pos":"a","meaning":"허름한, 초라한","source":"건국대","year":"2024"},{"word":"imperative","pos":"a","meaning":"필수적인, 긴급한 / (n) 명령, 의무","source":"건국대","year":"2024"},{"word":"irreducible","pos":"a","meaning":"더 줄일 수 없는, 환원할 수 없는","source":"건국대","year":"2024"},{"word":"rude","pos":"a","meaning":"무례한, 버릇없는, 조잡한","source":"건국대","year":"2024"},{"word":"conclusion","pos":"n","meaning":"결론, 종결","source":"건국대","year":"2024"},{"word":"stability","pos":"n","meaning":"안정성, 견고함","source":"건국대","year":"2024"},{"word":"shy","pos":"a","meaning":"수줍은, 소심한","source":"건국대","year":"2024"},{"word":"repugnant","pos":"a","meaning":"혐오스러운, 불쾌한","source":"건국대","year":"2024"},{"word":"spurious","pos":"a","meaning":"가짜의, 허위의, 잘못된","source":"건국대","year":"2024"},{"word":"easygoing","pos":"a","meaning":"느긋한, 태평한","source":"건국대","year":"2024"},{"word":"ingenuous","pos":"a","meaning":"순진한, 솔직한, 꾸밈없는","source":"건국대","year":"2024"},{"word":"suggestion","pos":"n","meaning":"제안, 암시","source":"건국대","year":"2024"},{"word":"invalidate","pos":"vt","meaning":"무효화하다, 무효임을 입증하다","source":"건국대","year":"2024"},{"word":"arbitrary","pos":"a","meaning":"임의적인, 자의적인, 독단적인","source":"건국대","year":"2024"},{"word":"productivity","pos":"n","meaning":"생산성","source":"건국대","year":"2024"},{"word":"fictitious","pos":"a","meaning":"허구의, 가공의","source":"건국대","year":"2024"},{"word":"partial","pos":"a","meaning":"부분적인, 편파적인","source":"건국대","year":"2024"},{"word":"universal","pos":"a","meaning":"보편적인, 전 세계적인","source":"건국대","year":"2024"},{"word":"irreversible","pos":"a","meaning":"되돌릴 수 없는, 불가역적인","source":"건국대","year":"2024"},{"word":"unfathomable","pos":"a","meaning":"헤아릴 수 없는, 이해할 수 없는","source":"건국대","year":"2024"},{"word":"discreet","pos":"a","meaning":"신중한, 분별 있는, 조심성 있는","source":"건국대","year":"2024"},{"word":"sanction","pos":"n","meaning":"제재, 승인 / (vt) 승인하다, 제재를 가하다","source":"건국대","year":"2024"},{"word":"pessimist","pos":"n","meaning":"비관주의자","source":"건국대","year":"2024"},{"word":"inconsequential","pos":"a","meaning":"중요하지 않은, 하찮은","source":"건국대","year":"2024"},{"word":"equilibrium","pos":"n","meaning":"균형, 평형","source":"건국대","year":"2024"},{"word":"serendipity","pos":"n","meaning":"뜻 밖의 행운, 우연한 발견","source":"건국대","year":"2024"},{"word":"mislead","pos":"vt","meaning":"오도하다, 잘못된 판단을 하게 하다","source":"건국대","year":"2024"},{"word":"endorsement","pos":"n","meaning":"지지, 보증, 승인","source":"건국대","year":"2024"},{"word":"alienation","pos":"n","meaning":"소외, 고립, 멀어짐","source":"건국대","year":"2024"},{"word":"tractable","pos":"a","meaning":"다루기 쉬운, 순종적인","source":"건국대","year":"2024"},{"word":"pragmatist","pos":"n","meaning":"실용주의자","source":"건국대","year":"2024"},{"word":"accusation","pos":"n","meaning":"비난, 고발, 혐의 제기","source":"건국대","year":"2024"},{"word":"agility","pos":"n","meaning":"민첩성, 기민함","source":"건국대","year":"2024"},{"word":"endurable","pos":"a","meaning":"견딜 수 있는, 참을 만한","source":"건국대","year":"2024"},{"word":"equanimity","pos":"n","meaning":"평정심, 침착함","source":"건국대","year":"2024"},{"word":"mutual","pos":"a","meaning":"상호 간의, 서로의","source":"건국대","year":"2024"},{"word":"tranquil","pos":"a","meaning":"평온한, 고요한","source":"건국대","year":"2024"},{"word":"radical","pos":"a","meaning":"급진적인, 근본적인","source":"건국대","year":"2024"},{"word":"constancy","pos":"n","meaning":"불변성, 일관성, 꾸준함","source":"건국대","year":"2024"},{"word":"communicative","pos":"a","meaning":"의사소통을 잘하는, 전달의","source":"건국대","year":"2024"},{"word":"validity","pos":"n","meaning":"타당성, 유효성","source":"건국대","year":"2024"},{"word":"rampant","pos":"a","meaning":"만연한, 걷잡을 수 없는","source":"건국대","year":"2024"},{"word":"dissociation","pos":"n","meaning":"분리, 결별, 단절","source":"건국대","year":"2024"},{"word":"implausible","pos":"a","meaning":"믿기 어려운, 그럴듯하지 않은","source":"건국대","year":"2024"},{"word":"confident","pos":"a","meaning":"자신감 있는, 확신하는","source":"건국대","year":"2024"},{"word":"idealist","pos":"n","meaning":"이상주의자","source":"건국대","year":"2024"},{"word":"biodegradable","pos":"a","meaning":"생분해성의","source":"건국대","year":"2024"},{"word":"mean","pos":"a","meaning":"인색한, 비열한, 심술궂은","source":"건국대","year":"2024"},{"word":"degraded","pos":"a","meaning":"저하된, 타락한","source":"건국대","year":"2024"},{"word":"eccentric","pos":"a","meaning":"괴짜의, 별난","source":"건국대","year":"2024"},{"word":"affective","pos":"a","meaning":"정서의, 감정적인","source":"건국대","year":"2024"},{"word":"legitimate","pos":"a","meaning":"합법적인, 정당한","source":"건국대","year":"2024"},{"word":"justification","pos":"n","meaning":"정당화, 정당한 이유","source":"건국대","year":"2024"},{"word":"ambiguity","pos":"n","meaning":"모호함, 애매모호함","source":"건국대","year":"2024"},{"word":"fragility","pos":"n","meaning":"취약성, 깨지기 쉬움","source":"건국대","year":"2024"},{"word":"ratification","pos":"n","meaning":"비준, 재가, 공식 승인","source":"건국대","year":"2024"},{"word":"propensity","pos":"n","meaning":"성향, 경향","source":"건국대","year":"2024"},{"word":"nature","pos":"n","meaning":"본성, 자연","source":"건국대","year":"2024"},{"word":"deficiency","pos":"n","meaning":"결핍, 부족, 결함","source":"건국대","year":"2024"},{"word":"optimist","pos":"n","meaning":"낙관주의자","source":"건국대","year":"2024"},{"word":"detrimental","pos":"a","meaning":"해로운, 불리한, 손해를 입히는","source":"건국대","year":"2024"},{"word":"impartial","pos":"a","meaning":"공평한, 편견 없는","source":"건국대","year":"2024"},{"word":"inconsiderate","pos":"a","meaning":"사려 깊지 못한, 배려심 없는","source":"건국대","year":"2024"},{"word":"tangible","pos":"a","meaning":"유형의, 만질 수 있는, 명백한","source":"건국대","year":"2024"},{"word":"probate","pos":"n","meaning":"유언 검인, 유언의 법적 효력 확인","source":"건국대","year":"2024"},{"word":"indulgent","pos":"a","meaning":"관대한, 제멋대로 하게 두는","source":"건국대","year":"2024"},{"word":"innovative","pos":"a","meaning":"혁신적인","source":"건국대","year":"2024"},{"word":"relieve","pos":"vt","meaning":"경감하다, 완화하다, 안심시키다","source":"건국대","year":"2024"},{"word":"efficient","pos":"a","meaning":"효율적인, 유능한","source":"건국대","year":"2024"},{"word":"taciturn","pos":"a","meaning":"말수가 적은, 과묵한","source":"건국대","year":"2024"},{"word":"cryptic","pos":"a","meaning":"수수께끼 같은, 모호한","source":"건국대","year":"2024"},{"word":"inexpensive","pos":"a","meaning":"저렴한, 비싸지 않은","source":"건국대","year":"2024"},{"word":"lenient","pos":"a","meaning":"관대한, 너그러운","source":"건국대","year":"2024"},{"word":"skeptic","pos":"n","meaning":"회의론자, 의심하는 사람","source":"건국대","year":"2024"},{"word":"innate","pos":"a","meaning":"타고난, 선천적인","source":"건국대","year":"2024"}];
+const $=id=>document.getElementById(id);
+const STORAGE_WORDS="wordLeagueWords_v2", STORAGE_WRONG="wordLeagueWrong_v2";
+let words=[], wrong={}, game={}, test={};
+const posNames={n:"명사",v:"동사",vt:"타동사",vi:"자동사",a:"형용사",ad:"형용사",adv:"부사",prep:"전치사",conj:"접속사",pron:"대명사",interj:"감탄사",aux:"조동사"};
+function norm(s){return String(s??"").trim().toLowerCase()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function posLabel(p){p=String(p||"").toLowerCase().replace(/\./g,"").trim();return p?(posNames[p]||p.toUpperCase())+" · "+p.toUpperCase():"품사 미기재"}
+function parseMeaning(raw){let s=String(raw??"").trim();let m=s.match(/^\(([^)]+)\)\s*(.*)$/);return m?{pos:m[1].trim().toLowerCase(),meaning:m[2].trim()}:{pos:"",meaning:s}}
+function normalizeEntry(raw,source){let word=String(raw.word??raw.english??"").trim();let pos=String(raw.pos??raw.partOfSpeech??"").trim().toLowerCase();let meaning=String(raw.meaning??raw.korean??raw.definition??"").trim();if(!pos){let parsed=parseMeaning(meaning);pos=parsed.pos;meaning=parsed.meaning}return word&&meaning?{word,pos,meaning,source:source||raw.source||"가져온 단어",year:String(raw.year||"").trim()}:null}
+function save(){localStorage.setItem(STORAGE_WORDS,JSON.stringify(words));localStorage.setItem(STORAGE_WRONG,JSON.stringify(wrong));updateCounts()}
+function load(){let savedWords=null;try{const raw=localStorage.getItem(STORAGE_WORDS);savedWords=raw===null?null:JSON.parse(raw);wrong=JSON.parse(localStorage.getItem(STORAGE_WRONG))||{}}catch(e){savedWords=null;wrong={}}let cleared=false;try{cleared=localStorage.getItem("wordLeagueWordsCleared_v1")==="1"}catch(e){}words=Array.isArray(savedWords)?savedWords:(cleared?[]:SEED.map(x=>({...x})));words=words.map(x=>normalizeEntry(x,x.source)||x).filter(x=>x.word&&x.meaning);save()}
+function toast(s){$("toast").textContent=s;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2500)}
+function switchTab(tab){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("hidden",v.id!==tab));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));if(tab==="mistakes")renderWrong();if(tab==="library")renderWords()}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+function updateCounts(){$("totalPill").textContent=words.length+" WORDS";$("libraryCount").textContent=words.length+"개";$("wrongCount").textContent=Object.values(wrong).filter(x=>x.count>0).length+"개"}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function key(x){return norm(x.word)}
+function wrongCount(x){return wrong[key(x)]?.count||0}
+function posKey(value){return String(value||'').toLowerCase().replace(/[.\s_-]/g,'').trim()}
+function optionsFor(item,dir,pool=words){
+  const answer=dir==="koen"?item.word:item.meaning;
+  const distractors=[];
+  const seen=new Set([answer]);
+  const targetPos=posKey(item.pos);
+  // Every distractor must have exactly the same part-of-speech label as the question word.
+  // If the selected deck is too small, draw additional distractors from the full word list,
+  // still matching the same part of speech.
+  const candidates=shuffle([...pool.filter(x=>key(x)!==key(item)&&posKey(x.pos)===targetPos),...words.filter(x=>key(x)!==key(item)&&posKey(x.pos)===targetPos)]);
+  for(const candidate of candidates){
+    const value=dir==="koen"?candidate.word:candidate.meaning;
+    if(!value || seen.has(value)) continue;
+    seen.add(value);
+    distractors.push({value,item:candidate});
+    if(distractors.length===3) break;
+  }
+  // Never introduce a different part of speech just to fill a missing option.
+  return shuffle([{value:answer,item},...distractors]);
+}
+function recordWrong(item){let k=key(item);wrong[k]=wrong[k]||{word:item.word,pos:item.pos,meaning:item.meaning,count:0,source:item.source};wrong[k].count++;save()}
+function recordCorrect(item){let k=key(item);if(wrong[k]){wrong[k].lastCorrect=Date.now();save()}}
+function renderScore(){for(let id of ["runs","outs","hits","homers"])$(id).textContent=game[id]||0;$("sceneRuns").textContent=(game.runs||0)+" RUN";$("sceneOuts").textContent="OUT "+(game.outs||0);$("sceneInning").textContent="TOP "+(Math.floor((game.outs||0)/3)+1);$("streak").textContent="🔥 STREAK "+(game.streak||0);$("inning").textContent="TOP "+(Math.floor((game.outs||0)/3)+1)+" · 공격 중";[1,2,3].forEach(n=>$("base"+n).classList.toggle("occupied",!!game.bases?.[n]));[1,2,3].forEach(n=>{$("runner"+n).classList.toggle("hidden",!game.bases?.[n]);if(game.bases?.[n]){let p={1:[69,53],2:[50,25],3:[31,53]}[n];$("runner"+n).style.left=p[0]+"%";$("runner"+n).style.top=p[1]+"%"}})}
+function advanceHit(){let scored=0;for(let n=3;n>=1;n--){if(game.bases[n]){if(n===3)scored++;else game.bases[n+1]=true;game.bases[n]=false}}game.bases[1]=true;game.runs+=scored;game.hits++;return scored}
+function homeRun(){let scored=1;for(let n=1;n<=3;n++)if(game.bases[n])scored++;game.bases={1:false,2:false,3:false};game.runs+=scored;game.hits++;game.homers++;return scored}
+function startGame(wrongOnly=false){$("gameOverScreen").classList.add("hidden");$("gameOverTitle").textContent="GAME OVER";$("endGameEarly").classList.remove("hidden");$("gameOverSub").innerHTML="경기가 종료되었습니다.<br>지금까지 푼 단어와 오답 기록은 저장되어 있습니다.";let pool=wrongOnly?words.filter(w=>wrongCount(w)>0):words;if(!pool.length){toast("오답 기록이 없습니다. 먼저 전체 경기나 테스트를 해보세요.");return}game={pool:shuffle(pool),idx:0,runs:0,outs:0,hits:0,homers:0,streak:0,bases:{1:false,2:false,3:false},wrongOnly,over:false,locked:false};$("gameMode").textContent=wrongOnly?"오답 복수전":"전체 단어";$("startGame").textContent="↻ 새 경기";$("gameFeedback").className="feedback";$("gameFeedback").textContent="PLAY BALL! 집중해서 스윙하세요.";renderScore();nextGameQuestion()}
+function nextGameQuestion(){if(game.over)return;game.locked=false;$("nextGame").classList.add("hidden");if(game.idx>=game.pool.length){game.pool=shuffle(game.wrongOnly?words.filter(w=>wrongCount(w)>0):words);game.idx=0}let item=game.pool[game.idx++];game.current=item;$("progress").textContent=(game.idx)+"번째 타석";$("gameWord").textContent=item.word;$("gamePos").textContent=posLabel(item.pos);$("gameYear").textContent=(item.source||"단어장")+(item.year?" · "+item.year:"");$("gameHint").textContent="이 단어의 가장 정확한 뜻을 고르세요";$("gameAnswers").innerHTML="";let opts=optionsFor(item,"enko",game.pool.length>=4?game.pool:words);opts.forEach((o,i)=>{let b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${["A","B","C","D"][i]}</span>${esc(o.value)}${o.item?.pos?`<small>${esc(posLabel(o.item.pos))}</small>`:""}`;b.onclick=()=>answerGame(o.value,b);$("gameAnswers").appendChild(b)});$("gameFeedback").className="feedback";$("gameFeedback").textContent="정답을 선택하세요."}
+let flashTimer=null;
+function showPlayEffect(type,title,sub){
+ const el=$("playFlash");
+ el.classList.remove("show","hit","homer","out");
+ void el.offsetWidth;
+ el.classList.add(type,"show");
+ $("playFlashTitle").textContent=title;
+ $("playFlashSub").textContent=sub||"";
+ if(flashTimer)clearTimeout(flashTimer);
+ flashTimer=setTimeout(()=>el.classList.remove("show","hit","homer","out"),1150);
+}
+function triggerScoreEffect(scored){
+ if(!scored)return;
+ const toast=$("scoreToast"),stadium=document.querySelector(".stadium"),runs=$("sceneRuns");
+ toast.textContent="+"+scored+" RUN"+(scored===1?"!":"S!");
+ toast.classList.remove("show");void toast.offsetWidth;toast.classList.add("show");
+ stadium.classList.remove("score-burst");void stadium.offsetWidth;stadium.classList.add("score-burst");
+ runs.classList.remove("score-bump");void runs.offsetWidth;runs.classList.add("score-bump");
+ setTimeout(()=>{toast.classList.remove("show");stadium.classList.remove("score-burst");runs.classList.remove("score-bump")},1350);
+}
+function recordGameAttempt(item,correct){
+ try{
+  const keyName="wordLeaguePlayedHistory";
+  const history=JSON.parse(localStorage.getItem(keyName)||"[]");
+  history.push({word:item.word,pos:item.pos,meaning:item.meaning,source:item.source||"",year:item.year||"",correct:!!correct,answeredAt:new Date().toISOString()});
+  if(history.length>5000)history.splice(0,history.length-5000);
+  localStorage.setItem(keyName,JSON.stringify(history));
+ }catch(e){}
+}
+function swingAndHit(){
+ const hitter=document.querySelector(".batter-art");
+ const ball=$("hitBall"),spark=$("hitSpark"),stadium=document.querySelector(".stadium");
+ hitter.classList.remove("hit-swing");void hitter.offsetWidth;hitter.classList.add("hit-swing");
+ ball.classList.remove("fly");spark.classList.remove("burst");stadium.classList.remove("hit-impact");
+ void ball.offsetWidth;ball.classList.add("fly");spark.classList.add("burst");stadium.classList.add("hit-impact");
+ setTimeout(()=>{hitter.classList.remove("hit-swing");ball.classList.remove("fly");spark.classList.remove("burst");stadium.classList.remove("hit-impact")},950);
+}
+function swingAndMiss(){
+ const hitter=document.querySelector(".batter-art");
+ hitter.classList.remove("miss-swing");void hitter.offsetWidth;hitter.classList.add("miss-swing");
+ setTimeout(()=>hitter.classList.remove("miss-swing"),700);
+}
+function answerGame(value,btn){
+ if(game.locked||game.over||pauseState)return;
+ stopPitchTimer();game.locked=true;const item=game.current,ok=value===item.meaning;
+ recordGameAttempt(item,ok);
+ [...$('gameAnswers').children].forEach(b=>{b.disabled=true;if(b.textContent.includes(item.meaning))b.classList.add('correct')});
+ if(ok){
+   // A hit clears the batter's accumulated strikes, just like baseball. Any prior timeout
+   // has already recorded this word as missed, so it remains eligible for a future-game homer.
+   game.strikes=0;
+   swingAndHit();recordCorrect(item);game.streak++;
+   if(game.homerEligible&&game.homerEligible.has(key(item))){const n=homeRun();triggerScoreEffect(n);$('gameFeedback').className='feedback home';$('gameFeedback').textContent='홈런! 오답 단어 재도전 성공 · '+n+'점';showPlayEffect('homer','HOME RUN!','담장을 넘겼습니다 · +'+n+' RUN');const ball=$('hitBall');ball.classList.remove('fly');ball.classList.add('homer-fly');setTimeout(()=>ball.classList.remove('homer-fly'),1300)}
+   else{const n=advanceHit();if(n)triggerScoreEffect(n);$('gameFeedback').className='feedback good';$('gameFeedback').textContent=n?'안타! '+n+'점 득점':'안타! 주자 진루';showPlayEffect('hit','HIT!',n?'+'+n+' RUN':'주자 진루');}
+ }else{
+   btn.classList.add('wrong');recordWrong(item);game.streak=0;
+   $('gameFeedback').className='feedback bad';$('gameFeedback').textContent='오답 선택 · OUT! 정답: '+item.meaning;
+   if(!game.over){game.locked=false;applyOut('오답 선택',null);return;}
+ }
+ game.currentTimedOut=false;game.locked=false;renderScore();
+ if(game.idx>=game.pool.length){game.inningRuns[currentInning()-1]=game.runs-(game.runsAtInningStart||0);finishGame('승리!',currentInning()<=4?currentInning()+'회 콜드게임 승리 · 남은 단어 0개':'5회 승리 · 남은 단어 0개');return;}
+ $('nextGame').textContent='다음 타석 →';$('nextGame').classList.remove('hidden');$('nextGame').onclick=nextGameQuestion;
+}
+function endGameEarly(){
+ if(!game||!game.current||game.over)return;
+ game.over=true;
+ $("endGameEarly").classList.add("hidden");
+ $("nextGame").classList.add("hidden");
+ $("gameOverTitle").textContent="GAME ENDED";
+ $("gameOverSub").innerHTML="경기를 직접 종료했습니다.<br>지금까지 푼 단어와 오답 기록은 저장되어 있습니다.";
+ $("finalRuns").textContent=game.runs||0;
+ $("finalHits").textContent=game.hits||0;
+ $("finalHomers").textContent=game.homers||0;
+ $("finalOuts").textContent=game.outs||0;
+ $("gameFeedback").className="feedback";
+ $("gameFeedback").textContent="경기 종료 · 기록 저장 완료";
+ $("gameOverScreen").classList.remove("hidden");
+}
+$("endGameEarly").onclick=endGameEarly;
+$("startGame").onclick=()=>startGame(false);$("wrongGame").onclick=()=>startGame(true);
+$("restartAfterGameOver").onclick=()=>startGame(game.wrongOnly);$("reviewAfterGameOver").onclick=()=>{$("gameOverScreen").classList.add("hidden");switchTab("mistakes")};
+function startTest(wrongOnly=false){let pool=wrongOnly?words.filter(w=>wrongCount(w)>0):words;if(!pool.length){toast("출제할 단어가 없습니다.");return}let c=$("count").value;test={pool:shuffle(pool).slice(0,c==="all"?pool.length:Number(c)),idx:0,score:0,dir:$("direction").value,wrongOnly,locked:false};$("testResult").classList.add("hidden");$("testCard").classList.remove("hidden");nextTestQuestion()}
+function nextTestQuestion(){if(test.idx>=test.pool.length){$("testCard").classList.add("hidden");$("testResult").classList.remove("hidden");$("testScore").textContent=test.score;$("testTotal").textContent=test.pool.length;$("testRate").textContent=Math.round(test.score/test.pool.length*100)+"%";$("testWrong").textContent=test.pool.length-test.score;return}test.locked=false;let item=test.pool[test.idx++];test.current=item;$("testProgress").textContent=test.idx+" / "+test.pool.length;$("testWord").textContent=test.dir==="koen"?item.meaning:item.word;$("testPos").textContent=posLabel(item.pos);$("testHint").textContent=test.dir==="koen"?"이 뜻에 해당하는 영단어를 고르세요":"품사와 뜻을 함께 확인하세요";$("testAnswers").innerHTML="";$("testFeedback").className="feedback";$("testFeedback").textContent="";$("nextTest").classList.add("hidden");optionsFor(item,test.dir).forEach((o,i)=>{let b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${["A","B","C","D"][i]}</span>${esc(o.value)}${o.item?.pos?`<small>${esc(posLabel(o.item.pos))}</small>`:""}`;b.onclick=()=>answerTest(o.value,b);$("testAnswers").appendChild(b)})}
+function answerTest(value,btn){if(test.locked)return;test.locked=true;let item=test.current,answer=test.dir==="koen"?item.word:item.meaning,ok=value===answer;[...$("testAnswers").children].forEach(b=>{b.disabled=true;if(b.textContent.includes(answer))b.classList.add("correct")});if(ok){test.score++;recordCorrect(item);$("testFeedback").className="feedback good";$("testFeedback").textContent="정답! "+posLabel(item.pos)+" · "+item.word+" — "+item.meaning}else{btn.classList.add("wrong");recordWrong(item);$("testFeedback").className="feedback bad";$("testFeedback").textContent="오답 · "+item.word+" ("+posLabel(item.pos)+") — "+item.meaning}renderWrong();$("nextTest").textContent=test.idx>=test.pool.length?"결과 확인":"다음 문제 →";$("nextTest").classList.remove("hidden")}
+$("startTest").onclick=()=>startTest(false);$("startWrongTest").onclick=()=>{switchTab("test");startTest(true)};$("nextTest").onclick=nextTestQuestion;$("testAgain").onclick=()=>startTest(false);
+function renderWrong(){let arr=Object.values(wrong).filter(x=>x.count>0).sort((a,b)=>b.count-a.count);$("wrongList").innerHTML="";if(!arr.length){$("wrongList").innerHTML='<div class="empty">아직 오답 기록이 없습니다.<br>야구 경기나 단어 테스트를 시작해 보세요.</div>';return}arr.forEach(x=>{let d=document.createElement("div");d.className="wordrow";d.innerHTML=`<div><b>${esc(x.word)} <span class="tag pos">${esc(posLabel(x.pos))}</span></b><div class="meaning">${esc(x.meaning)}</div><div class="muted">오답 ${x.count}회</div></div><span class="tag hot">RETRY</span>`;$("wrongList").appendChild(d)})}
+$("clearWrong").onclick=()=>{
+  // Clear in-memory state and persisted state explicitly; do not depend on a confirm dialog.
+  wrong={};
+  try { localStorage.removeItem(STORAGE_WRONG); } catch(e) {}
+  try { localStorage.setItem(STORAGE_WRONG, "{}"); } catch(e) {}
+  updateCounts();
+  renderWrong();
+  renderWords();
+  toast("오답 기록을 모두 초기화했습니다.");
+};
+function renderWords(){let q=norm($("search").value);let arr=words.filter(w=>norm([w.word,w.pos,w.meaning,w.source,w.year].join(" ")).includes(q));$("wordList").innerHTML="";arr.slice(0,250).forEach(w=>{let d=document.createElement("div");d.className="wordrow";d.innerHTML=`<div><b>${esc(w.word)} <span class="tag pos">${esc(posLabel(w.pos))}</span></b><div class="meaning">${esc(w.meaning)}</div><div class="muted">${esc(w.source||"단어장")}${w.year?" · "+esc(w.year):""}${wrongCount(w)?" · 오답 "+wrongCount(w)+"회":""}</div></div><button title="단어 삭제">삭제</button>`;d.querySelector("button").onclick=()=>{if(confirm(w.word+" 단어를 삭제할까요?")){words=words.filter(x=>!(key(x)===key(w)&&(x.source||"")===(w.source||"")&&(x.year||"")===(w.year||"")));save();renderWords();renderDeckOptions()}};$("wordList").appendChild(d)});if(!arr.length)$("wordList").innerHTML='<div class="empty">검색 결과가 없습니다.</div>';if(arr.length>250){let d=document.createElement("div");d.className="muted";d.textContent="검색 결과 250개까지 표시 중입니다. 검색어를 더 입력하세요.";$("wordList").appendChild(d)}}
+$("search").oninput=renderWords;
+function importRows(rows,source){let list=[];for(let row of rows){if(!row||row.length<2)continue;let a=String(row[0]??"").trim(),b=String(row[1]??"").trim(),c=String(row[2]??"").trim();let word="",pos="",meaning="",year="";if(b&&c){word=b;let parsed=parseMeaning(c);pos=parsed.pos;meaning=parsed.meaning;year=String(row[5]??"").trim()}else{word=a;let parsed=parseMeaning(b);pos=parsed.pos;meaning=parsed.meaning;year=String(row[5]??"").trim()}if(!word||!meaning)continue;if(["단어","영단어","word","영어","열2"].includes(norm(word))||["뜻","의미","meaning","열3"].includes(norm(meaning)))continue;if(!/^\d{4}$/.test(year))year="";list.push(normalizeEntry({word,pos,meaning,year},source))}const identity=x=>[norm(x.word),norm(x.source||source),String(x.year||"").trim()].join("::");let seen=new Set(words.map(identity)),added=0,dupes=0;for(let item of list){if(!item)continue;if(seen.has(identity(item))){dupes++;continue}words.push(item);seen.add(identity(item));added++}save();renderWords();if(typeof renderDeckOptions==='function')renderDeckOptions();return {added,dupes,found:list.length,years:[...new Set(list.map(x=>x.year).filter(Boolean))].sort().reverse()}}
+$("fileInput").onchange=async e=>{let f=e.target.files[0];if(!f)return;let source=$("sourceName").value.trim()||f.name.replace(/\.[^.]+$/,"");$("importStatus").textContent="파일을 읽는 중입니다…";try{let rows=[],sheetName="CSV";if(/\.csv$/i.test(f.name)){let txt=await f.text();rows=txt.replace(/^\uFEFF/,"").split(/\r?\n/).map(line=>line.split(","))}else{if(!window.XLSX)throw Error("Excel 처리 모듈을 불러오지 못했습니다. 인터넷 연결을 확인하거나 Excel에서 CSV로 저장해 주세요.");let wb=XLSX.read(await f.arrayBuffer(),{type:"array"});sheetName=wb.SheetNames.find(n=>n.replace(/\s/g,"").toLowerCase()==="시트2");if(!sheetName)throw Error("파일에서 '시트2'를 찾지 못했습니다. 원본 파일의 시트 이름을 확인해 주세요.");rows=XLSX.utils.sheet_to_json(wb.Sheets[sheetName],{header:1,defval:""});}let result=importRows(rows,source);$("importStatus").innerHTML=`<b>가져오기 완료 · ${esc(sheetName)}</b><br>신규 ${result.added}개 · 중복 제외 ${result.dupes}개 · 읽은 후보 ${result.found}개<br>출제년도: ${result.years.length?result.years.map(esc).join(", "):"미분류"}<br>시트2의 F열에서 4자리 연도를 읽어 분류했습니다. 품사는 뜻 셀에서 분리해 보존했습니다.`;toast(result.added+"개 단어를 추가했습니다.");}catch(err){$("importStatus").textContent="가져오기 실패: "+err.message;toast("파일 가져오기에 실패했습니다.")}e.target.value=""};
+$("exportCsv").onclick=()=>{let rows=[["단어","품사","뜻","학교/출처","연도"],...words.map(w=>[w.word,w.pos,w.meaning,w.source||"",w.year||""])];let csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");let blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="word_league_vocab_backup.csv";a.click();URL.revokeObjectURL(a.href);toast("CSV 백업 파일을 만들었습니다.")};
+$("resetSeed").onclick=()=>{if(confirm("현재 단어장을 건국대 시트2 원본 113개로 교체할까요? 추가한 단어는 삭제됩니다.")){words=SEED.map(w=>({...w}));wrong={};save();renderWords();renderWrong();renderDeckOptions();toast("건국대 원본 113단어를 복구했습니다.")}};
+// Clear-all handler is bound once at the end of the script.
+
+// WORD LEAGUE v28: successful answer clears current batter strikes; timeouts remain in wrong-word history.
+let pitchTimer=null, pitchStarted=0, pitchRemaining=5000, timerRunning=false, pauseState=false, inningRuns=[], inningNotice=false;
+const MATCH_HISTORY_KEY='wordLeagueMatchHistory_v1';
+function currentInning(){return Math.min(5,Math.floor((game.outs||0)/3)+1)}
+function stopPitchTimer(){if(pitchTimer){clearInterval(pitchTimer);pitchTimer=null}timerRunning=false}
+function startPitchTimer(reset=true){stopPitchTimer();if(!game||game.over||pauseState||game.locked)return;if(reset||!Number.isFinite(pitchRemaining)||pitchRemaining<=0)pitchRemaining=5000;pitchStarted=Date.now();timerRunning=true;updateTimerUI();pitchTimer=setInterval(()=>{if(pauseState||game.over||game.locked)return;let left=Math.max(0,pitchRemaining-(Date.now()-pitchStarted));$('timerText').textContent=(left/1000).toFixed(1)+'초';$('timerText').classList.toggle('timer-low',left<=1200);if(left<=0){stopPitchTimer();pitchRemaining=5000;applyStrike(true)}},80)}
+function updateTimerUI(){let left=timerRunning?Math.max(0,pitchRemaining-(Date.now()-pitchStarted)):pitchRemaining;$('timerText').textContent=(left/1000).toFixed(1)+'초';$('timerText').classList.toggle('timer-low',left<=1500);const strikes=Math.min(2,game.strikes||0);const lamps=$('strikeLights');if(lamps){[...lamps.children].forEach((lamp,i)=>lamp.classList.toggle('lit',i<strikes));lamps.setAttribute('aria-label','스트라이크 '+(game.strikes||0)+'개')} $('strikeDots').textContent='● '.repeat(strikes)+'○ '.repeat(2-strikes);$('countDisplay').textContent='STRIKE '+(game.strikes||0)+' · OUT '+(game.outs||0)}
+function renderDeckOptions(){const sel=$('gameDeck');if(!sel)return;const old=sel.value;const pairs=[...new Map(words.map(w=>{const source=w.source||'단어장',year=String(w.year||'미분류').trim()||'미분류',id=JSON.stringify({source,year});return[id,{source,year,id,label:source+' · '+year}]})).values()].sort((a,b)=>a.source.localeCompare(b.source,'ko')||a.year.localeCompare(b.year,'ko'));sel.innerHTML='<option value="__all">전체 단어장</option>'+pairs.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.label)+'</option>').join('');if(pairs.some(x=>x.id===old))sel.value=old}
+function renderMatchHistory(){let arr=[];try{arr=JSON.parse(localStorage.getItem(MATCH_HISTORY_KEY)||'[]')}catch(e){}const box=$('matchHistory');if(!box)return;box.innerHTML='';if(!arr.length){box.innerHTML='<div class="empty">아직 경기 기록이 없습니다.</div>';return}arr.slice().reverse().forEach(r=>{const d=document.createElement('div');d.className='wordrow';const score=(r.inningRuns||[]).map((n,i)=>(i+1)+'회 '+n+'점').join(' · ');d.innerHTML='<div><b>'+esc(r.date)+' '+esc(r.result)+'</b><div class="meaning">'+esc(r.detail)+'</div><div class="muted">총 '+r.runs+'점 · '+esc(score||'이닝 득점 기록 없음')+'</div></div>';box.appendChild(d)})}
+function saveMatch(result,detail){if(game.saved)return;game.saved=true;const r={date:new Date().toLocaleString('ko-KR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}),result,detail,runs:game.runs||0,outs:game.outs||0,remaining:Math.max(0,game.pool.length-game.idx),inningRuns:game.inningRuns||[]};let a=[];try{a=JSON.parse(localStorage.getItem(MATCH_HISTORY_KEY)||'[]')}catch(e){}a.push(r);if(a.length>300)a=a.slice(-300);localStorage.setItem(MATCH_HISTORY_KEY,JSON.stringify(a));renderMatchHistory()}
+function renderScore(){for(let id of ['runs','outs','hits','homers'])if($(id))$(id).textContent=game[id]||0;$('sceneRuns').textContent=(game.runs||0)+' RUN';$('sceneOuts').textContent='OUT '+(game.outs||0);$('sceneInning').textContent=currentInning()+'회';$('inning').textContent=currentInning()+'회 · 공격 중';$('countDisplay').textContent='STRIKE '+(game.strikes||0)+' · OUT '+(game.outs||0);[1,2,3].forEach(n=>{$('base'+n).classList.toggle('occupied',!!game.bases?.[n]);$('runner'+n).classList.toggle('hidden',!game.bases?.[n]);if(game.bases?.[n]){let p={1:[69,53],2:[50,25],3:[31,53]}[n];$('runner'+n).style.left=p[0]+'%';$('runner'+n).style.top=p[1]+'%'}});updateTimerUI()}
+function finishGame(result,detail){if(game.over)return;game.over=true;stopPitchTimer();pauseState=false;$('pausedOverlay').classList.add('hidden');$('pauseGame').textContent='일시정지';$('nextGame').classList.add('hidden');$('endGameEarly').classList.add('hidden');$('gameOverTitle').textContent=result;$('gameOverSub').innerHTML=esc(detail)+'<br>총 '+game.runs+'점 · '+(game.inningRuns||[]).map((n,i)=>(i+1)+'회 '+n+'점').join(' / ');$('finalRuns').textContent=game.runs;$('finalHits').textContent=game.hits;$('finalHomers').textContent=game.homers;$('finalOuts').textContent=game.outs;saveMatch(result,detail);setTimeout(()=>$('gameOverScreen').classList.remove('hidden'),250);renderScore()}
+function advanceInning(){stopPitchTimer();game.strikes=0;game.inningRuns[Math.max(0,currentInning()-2)]=game.runs-(game.runsAtInningStart||0);game.runsAtInningStart=game.runs;game.bases={1:false,2:false,3:false};renderScore();if(currentInning()>5){finishGame('승리!', '5회 종료 · 승리');return}inningNotice=true;$('gameFeedback').className='feedback good';$('gameFeedback').textContent=(currentInning()-1)+'회 종료 · 다음 이닝으로 진행하세요.';$('nextGame').textContent='다음 이닝으로';$('nextGame').classList.remove('hidden');$('nextGame').onclick=()=>{inningNotice=false;nextGameQuestion()};}
+function applyOut(reason,item){game.outs++;game.strikes=0;game.streak=0;if(item){recordWrong(item);recordGameAttempt(item,false)}$('gameFeedback').className='feedback bad';$('gameFeedback').textContent=reason+' · OUT '+game.outs+'/15'+(item?' · 정답: '+item.meaning:'');showPlayEffect('out','OUT!',reason);renderScore();if(game.outs>=15){game.inningRuns[currentInning()-1]=game.runs-(game.runsAtInningStart||0);finishGame('패배', '15아웃 패배 · 남은 단어 '+Math.max(0,game.pool.length-game.idx)+'개');return}if(game.outs%3===0){advanceInning();return}$('nextGame').textContent='다음 타석 →';$('nextGame').classList.remove('hidden');$('nextGame').onclick=nextGameQuestion}
+function applyStrike(timeout=false){
+ if(game.over||game.locked||pauseState)return;
+ // Only timer expiry adds a strike. Repeated 5-second periods continue on the same question.
+ if(!game.currentTimedOut){recordWrong(game.current);recordGameAttempt(game.current,false);game.currentTimedOut=true;}
+ const outsBefore=game.outs||0;
+ game.strikes=(game.strikes||0)+1;game.streak=0;
+ let batterOut=false;
+ if(game.strikes>=3){game.strikes=0;game.outs++;batterOut=true;showPlayEffect('out','삼진 아웃!','3스트라이크 · 타자 아웃');}
+ const oldInning=Math.floor(outsBefore/3)+1, newInning=Math.floor(game.outs/3)+1;
+ for(let inn=oldInning;inn<newInning && inn<=5;inn++){
+   game.inningRuns[inn-1]=game.runs-(game.runsAtInningStart||0);
+   game.runsAtInningStart=game.runs;
+ }
+ if(newInning>oldInning){game.bases={1:false,2:false,3:false};}
+ if(game.outs>=15){game.inningRuns[4]=game.runs-(game.runsAtInningStart||0);finishGame('패배','15아웃 패배 · 남은 단어 '+Math.max(0,game.pool.length-game.idx)+'개');return;}
+ $('gameFeedback').className='feedback bad';
+ let msg=timeout?'5초 초과 · 스트라이크 '+game.strikes:'스트라이크 '+game.strikes;
+ if(batterOut)msg+=' · 삼진 아웃 1개';
+ if(newInning>oldInning)msg+=' · '+(newInning-1)+'회 종료, '+newInning+'회 진행 중';
+ msg+=' · 같은 문제 계속';$('gameFeedback').textContent=msg;
+ $('gameAnswers').querySelectorAll('button').forEach(b=>b.disabled=false);renderScore();startPitchTimer();
+}
+function startGame(wrongOnly=false){stopPitchTimer();$('gameOverScreen').classList.add('hidden');pauseState=false;const deck=$('gameDeck')?.value||'__all';let pool=wrongOnly?words.filter(w=>wrongCount(w)>0):words;let deckLabel='전체 단어장';if(deck!=='__all'){let selected;try{selected=JSON.parse(deck)}catch(e){selected={source:deck}}pool=pool.filter(w=>(w.source||'단어장')===selected.source&&(String(w.year||'미분류').trim()||'미분류')===selected.year);deckLabel=selected.source+' · '+selected.year}if(!pool.length){toast(wrongOnly?'오답 기록이 없습니다.':'선택한 단어장에 단어가 없습니다.');return}const priorMissKeys=new Set(pool.filter(w=>wrongCount(w)>0).map(key));game={pool:shuffle(pool),homerEligible:priorMissKeys,idx:0,runs:0,outs:0,hits:0,homers:0,streak:0,strikes:0,bases:{1:false,2:false,3:false},wrongOnly,deck,over:false,locked:false,inningRuns:[0,0,0,0,0],runsAtInningStart:0,saved:false};$('gameMode').textContent=wrongOnly?'오답 복수전':deckLabel;$('startGame').textContent='새 경기';$('gameFeedback').className='feedback';$('gameFeedback').textContent='PLAY BALL! 5초 안에 정답을 선택하세요.';renderScore();nextGameQuestion()}
+function nextGameQuestion(){if(game.over||pauseState)return;stopPitchTimer();if(inningNotice){inningNotice=false}game.locked=false;$('nextGame').classList.add('hidden');if(game.idx>=game.pool.length){const rem=game.pool.length-game.idx;game.inningRuns[currentInning()-1]=game.runs-(game.runsAtInningStart||0);finishGame('승리!',currentInning()<=4?currentInning()+'회 콜드게임 승리 · 남은 단어 0개':'5회 승리 · 남은 단어 0개');return}let item=game.pool[game.idx++];game.current=item;game.currentTimedOut=false;$('progress').textContent=game.idx+'번째 타석 / 남은 타석 : '+(game.pool.length-game.idx);$('gameWord').textContent=item.word;$('gamePos').textContent=posLabel(item.pos);$('gameYear').textContent=(item.source||'단어장')+(item.year?' · '+item.year:'');$('gameHint').textContent='정답을 고르세요. 5초마다 스트라이크 1개가 누적됩니다';$('gameAnswers').innerHTML='';optionsFor(item,'enko',game.pool).forEach((o,i)=>{let b=document.createElement('button');b.className='answer';b.innerHTML='<span class="letter">'+['A','B','C','D'][i]+'</span>'+esc(o.value)+(o.item?.pos?'<small>'+esc(posLabel(o.item.pos))+'</small>':'');b.onclick=()=>answerGame(o.value,b);$('gameAnswers').appendChild(b)});$('gameFeedback').className='feedback';$('gameFeedback').textContent='정답을 선택하세요.';renderScore();startPitchTimer()}
+function answerGame(value,btn){
+ if(game.locked||game.over||pauseState)return;
+ stopPitchTimer();game.locked=true;const item=game.current,ok=value===item.meaning;
+ recordGameAttempt(item,ok);
+ [...$('gameAnswers').children].forEach(b=>{b.disabled=true;if(b.textContent.includes(item.meaning))b.classList.add('correct')});
+ if(ok){
+   // Correct answer is a hit: clear this batter's accumulated strikes. Timeout misses remain in wrong history.
+   game.strikes=0;
+   swingAndHit();recordCorrect(item);game.streak++;
+   if(game.homerEligible&&game.homerEligible.has(key(item))){const n=homeRun();triggerScoreEffect(n);$('gameFeedback').className='feedback home';$('gameFeedback').textContent='홈런! 오답 단어 재도전 성공 · '+n+'점';showPlayEffect('homer','HOME RUN!','담장을 넘겼습니다 · +'+n+' RUN');const ball=$('hitBall');ball.classList.remove('fly');ball.classList.add('homer-fly');setTimeout(()=>ball.classList.remove('homer-fly'),1300)}
+   else{const n=advanceHit();if(n)triggerScoreEffect(n);$('gameFeedback').className='feedback good';$('gameFeedback').textContent=n?'안타! '+n+'점 득점':'안타! 주자 진루';showPlayEffect('hit','HIT!',n?'+'+n+' RUN':'주자 진루');}
+ }else{
+   btn.classList.add('wrong');recordWrong(item);game.streak=0;
+   $('gameFeedback').className='feedback bad';$('gameFeedback').textContent='오답 선택 · OUT! 정답: '+item.meaning;
+   game.locked=false;applyOut('오답 선택',null);return;
+ }
+ game.currentTimedOut=false;game.locked=false;renderScore();
+ if(game.idx>=game.pool.length){game.inningRuns[currentInning()-1]=game.runs-(game.runsAtInningStart||0);finishGame('승리!',currentInning()<=4?currentInning()+'회 콜드게임 승리 · 남은 단어 0개':'5회 승리 · 남은 단어 0개');return;}
+ $('nextGame').textContent='다음 타석 →';$('nextGame').classList.remove('hidden');$('nextGame').onclick=nextGameQuestion;
+}
+function endGameEarly(){if(!game||game.over)return;finishGame('경기 종료','사용자 종료 · 남은 단어 '+Math.max(0,game.pool.length-game.idx)+'개')}
+function pauseToggle(){if(!game||game.over)return;pauseState=!pauseState;if(pauseState){if(timerRunning){pitchRemaining=Math.max(0,pitchRemaining-(Date.now()-pitchStarted));stopPitchTimer()}$('pausedOverlay').classList.remove('hidden');$('pauseGame').textContent='계속하기';$('gameAnswers').querySelectorAll('button').forEach(b=>b.disabled=true)}else{$('pausedOverlay').classList.add('hidden');$('pauseGame').textContent='일시정지';if(!game.locked){$('gameAnswers').querySelectorAll('button').forEach(b=>b.disabled=false);startPitchTimer(false)}}}
+
+// Bind the clear-all action last so it cannot be overwritten by earlier setup code.
+// Single authoritative delete-all handler: remove every saved vocabulary entry.
+$("clearAllWords").addEventListener("click", (event)=>{
+ event.preventDefault();
+ if(!window.confirm("저장된 모든 단어 113개 및 추가 등록 단어를 전부 삭제할까요? 이 작업은 복구할 수 없습니다.")) return;
+ words=[];
+ wrong={};
+ try {
+   localStorage.setItem(STORAGE_WORDS, "[]");
+   localStorage.setItem(STORAGE_WRONG, "{}");
+   localStorage.setItem("wordLeagueWordsCleared_v1", "1");
+   localStorage.setItem("wordLeagueUserDeletedAllWords_v1", "1");
+ } catch(err) {
+   alert("브라우저 저장소에 접근할 수 없습니다. 페이지를 일반 브라우저(Chrome/Edge)에서 열어 주세요.");
+ }
+ // Force all dependent views and counters to update immediately.
+ $("totalPill").textContent="0 WORDS";
+ $("libraryCount").textContent="0개";
+ $("wrongCount").textContent="0개";
+ $("wordList").innerHTML='<div class="empty">저장된 단어가 없습니다.</div>';
+ $("wrongList").innerHTML='<div class="empty">오답 기록이 없습니다.</div>';
+ renderDeckOptions();
+ const status=$("importStatus");
+ if(status) status.textContent="저장된 모든 단어를 삭제했습니다. 현재 단어 수: 0개. 새 단어를 등록하려면 Excel 파일을 가져오세요.";
+ toast("저장된 모든 단어를 삭제했습니다. 현재 0개입니다.");
+});
+load();renderWords();renderWrong();renderDeckOptions();renderMatchHistory();renderScore();$("pauseGame").onclick=pauseToggle;$("clearMatchHistory").onclick=()=>{localStorage.removeItem(MATCH_HISTORY_KEY);renderMatchHistory()};
+</script></body></html>
